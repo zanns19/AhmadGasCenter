@@ -6,7 +6,12 @@ from django.db.models import Q
 
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
+    products= Product.objects.all()
+    kitchens=Kitchen_Items.objects.all()
+    # allprods=[[products],[kitchens]]
+    n=len(products)
+    params={'product':products,'kitchen':kitchens}
+    return render(request,'index.html',params)
 def services(request):
     products= Product.objects.all()
     kitchens=Kitchen_Items.objects.all()

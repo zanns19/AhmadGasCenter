@@ -10,6 +10,30 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
+  
+    .word-type-container {
+        display: inline-block; /* Essential for text to fit the animated width */
+        white-space: nowrap;  /* Prevents text from wrapping */
+        overflow: hidden;     /* Hides overflowing text during animation */
+        border-right: 0.15em solid white; /* Simulates a blinking cursor */
+        animation: typing 3.5s forwards, blink-caret 0.75s step-end infinite;
+        /* Adjust typing duration (3.5s) as needed for your text length */
+    }
+
+    /* Keyframes for the typing effect */
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    /* Keyframes for the blinking cursor */
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: white; } /* Adjust to match text color for visibility */
+    }
+
+
+
       .responsive-iframe {
       width: 100%;
     border: none;

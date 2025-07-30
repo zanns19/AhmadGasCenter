@@ -1,0 +1,165 @@
+{% load static tailwind_tags %}
+<!-- Current path: {{ request.path }} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> {% block title %}Ahmad Gas Center{% endblock  %} </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+      .responsive-iframe {
+      width: 100%;
+    border: none;
+    }
+    
+.nav-link {
+  position: relative; /* Required for ::after to position absolutely */
+}
+
+/* Base underline effect for larger screens */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #e2c300;
+  transition: width 0.3s ease;
+}
+
+/* Hover effect for all screens */
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active state */
+.nav-link.active::after {
+  width: 100%;
+  background-color: #fdc700;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 767px) {
+  .nav-link::after {
+    left: 39%; /* Centered for mobile menu layout */
+  }
+
+  .nav-link:hover::after {
+    width: 23%;
+  }
+
+  .nav-link.active::after {
+    width: 23%;
+  }
+}
+  
+    @media (max-width: 639px) {
+    .responsive-iframe {
+      height: 265px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .responsive-iframe {
+      height: 600px;
+    }
+  }
+</style>
+    {% tailwind_css %}
+</head>
+
+<body class="bg-gray-300 font-sans leading-normal tracking-normal">
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v23.0"></script>
+
+<div class="container mx-auto">
+    
+
+<nav class="border-gray-200 bg-yellow-900 text-white dark:bg-gray-800 dark:border-gray-700">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Ahmad Gas center</span>
+    </a>
+    <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto font-sans text-xl" id="navbar-solid-bg">
+      <ul class="flex flex-col text-center font-medium mt-4 rounded-lg bg-yellow-900 text-white md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+
+  <li>
+  <a href="/"
+     class="nav-link block relative py-2 px-3 md:p-0 hover:text-amber-200 
+            {% if request.path == '/' %}
+              active text-yellow-400
+            {% else %}
+              text-white
+            {% endif %}">
+    Home
+  </a>
+</li>
+
+
+  <li>
+  <a href="/services"
+     class="block  py-2 px-3 md:p-0 relative nav-link
+       hover:text-amber-200     {% if '/services' in request.path %}active text-yellow-400 {% else %}text-white{% endif %}">
+    Services
+  </a>
+</li>
+
+
+  <li>
+    <a href="/about"
+       class="block home py-2 px-3 md:p-0 relative rounded-sm nav-link
+    hover:text-amber-200          {% if request.path == '/about' %}active text-yellow-400 {% else %}text-white{% endif %}">
+      About
+    </a>
+  </li>
+
+  <li>
+    <a href="/contact"
+       class="block home py-2 px-3 md:p-0 relative rounded-sm nav-link
+      hover:text-amber-200        {% if request.path == '/contact' %}active text-yellow-400  {% else %}text-white{% endif %}">
+      Contact
+    </a>
+  </li>
+ 
+</ul>
+
+    </div>
+  </div>
+</nav>
+
+    <section class="container mx-auto md:max-w-[1270px]">
+        {% block content  %}{% endblock  %}
+    </section>
+    <!-- Add this in your base.html before </body> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    {% block javascript %}
+{% endblock  %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector("[data-collapse-toggle]");
+    const menu = document.getElementById("navbar-solid-bg");
+
+    toggleBtn.addEventListener("click", () => {
+      if (menu.classList.contains("hidden")) {
+        menu.classList.remove("hidden");
+        menu.classList.add("block"); // Optional: only for smooth transition
+      } else {
+        menu.classList.add("hidden");
+        menu.classList.remove("block");
+      }
+    });
+  });
+</script>
+</body>
+</html>

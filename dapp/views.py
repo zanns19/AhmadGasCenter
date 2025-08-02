@@ -3,6 +3,8 @@ from .models import Product , Kitchen_Items , Contact
 from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models import Q
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def index(request):
@@ -13,12 +15,32 @@ def index(request):
     params={'product':products,'kitchen':kitchens}
     return render(request,'index.html',params)
 def services(request):
-    products= Product.objects.all()
-    kitchens=Kitchen_Items.objects.all()
-    # allprods=[[products],[kitchens]]
-    n=len(products)
-    params={'product':products,'kitchen':kitchens}
-    return render(request,'services.html',params)
+    # products= Product.objects.all()
+    # paginator=Paginator(products,2)
+    # page_number=request.GET.get('page')
+    # Product_dataFinal=paginator.get_page(page_number)
+    # kitchens=Kitchen_Items.objects.all()
+    # # allprods=[[products],[kitchens]]
+    # n=len(products)
+    # params={'product':Product_dataFinal,'kitchen':kitchens}
+# Gas Products Pagination
+    gas_products = Product.objects.all()
+    gas_paginator = Paginator(gas_products, 4)  # Show 4 gas products per page
+    gas_page_number = request.GET.get('gas_page')
+    gas_page_obj = gas_paginator.get_page(gas_page_number)
+
+    # Kitchen Items Pagination
+    kitchen_items = Kitchen_Items.objects.all()
+    kitchen_paginator = Paginator(kitchen_items, 8)  # Show 4 kitchen items per page
+    kitchen_page_number = request.GET.get('kitchen_page')
+    kitchen_page_obj = kitchen_paginator.get_page(kitchen_page_number)
+
+    context = {
+        'product': gas_page_obj,
+        'kitchen': kitchen_page_obj,
+    }
+
+    return render(request,'services.html',context)
 def searchMatch(query,item):
         return query.lower() in item.desc.lower() or query.lower() in item.product_name.lower()
 def search(request):

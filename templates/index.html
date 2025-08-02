@@ -3,15 +3,18 @@
 {% block content %}
 <div class="w-full rounded-xl p-2">
  <section class="mb-4">
-  <div class="bg-gradient-to-r from-orange-500 to-amber-400 text-white py-16 px-6 sm:px-8 lg:px-12 rounded-lg shadow-xl text-center max-w-4xl mx-auto mt-10 mb-10">
-    <h1 class="text-[14px] sm:text-[40px] font-extrabold mb-4">
-        <span class="word-type-container text-blue-900 py-1">Welcome to Fongas Ahmad Gas Centre</span>
+  <div class="bg-gradient-to-r from-orange-500 to-amber-400 py-16 px-6 sm:px-8 lg:px-12 rounded-lg shadow-xl text-center max-w-4xl mx-auto mt-10 mb-10">
+    <h1 class="text-2xl sm:text-[40px] font-extrabold mb-1.5 sm:mb-4">
+        <span class="word-type-container text-blue-900 py-1">Welcome to Ahmad Gas Center</span>
+    </h1>
+    <h1 id="delayedText" class="text-xl sm:text-3xl font-bold mb-1 sm:mb-4 hidden">
+        <span class="word-type-container text-red-800">FONGAS AUTHORIZED DEALER</span>
     </h1>
     <p class="text-md text-green-950  sm:text-xl leading-relaxed opacity-90">
-        Your reliable source for *quality gas cylinders* and *essential kitchen items* in Karachi.
+        Your reliable source for <span class="font-bold">quality gas cylinders</span> and <span class="font-bold">essential kitchen appliances</span> in Muridwala.
     </p>
-    <p class="text-sm sm:text-lg mt-4 opacity-85 text-amber-900">
-        We ensure *competitive prices* and *top-notch service* for every customer.
+    <p class="text-sm sm:text-lg mt-4 opacity-95 text-amber-700">
+        We ensure <span class="font-bold">competitive prices</span> and <span class="font-bold">top-notch service</span> for every customer.
     </p>
 </div>
 
@@ -226,6 +229,12 @@
 
 {% block javascript %}
 <script>
+  {% comment %} typing {% endcomment %}
+  setTimeout(() => {
+    document.getElementById("delayedText").classList.remove("hidden");
+  }, 4250); // 5000 milliseconds = 5 seconds
+  {% comment %} typing {% endcomment %}
+
  document.addEventListener("DOMContentLoaded", function () {
     const productCards = document.querySelectorAll(".star-wrapper");
 

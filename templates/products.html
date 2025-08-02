@@ -30,9 +30,12 @@ Center {% endblock %} {% block content %}
         class="btn flex justify-between sm:mt-6 px-5 p-2 flex-col lg:flex-row mx-auto"
       >
         <span
-          class="text-6xl sm:text-4xl text-center font-bold {% if i.price > 1500 %} text-red-900 {%else%} text-green-900 {%endif%}"
-          >Rs. {{item.price}}</span
-        >
+  id="totalPrice{{ item.id }}"
+  class="text-6xl sm:text-4xl text-center font-bold {% if item.price > 1500 %} text-red-900 {%else%} text-green-900 {%endif%}"
+>
+  <!-- JS will populate here -->
+</span>
+
         <!-- Each item's quantity control -->
         <div
           id="divpr{{ item.id }}"
@@ -47,7 +50,7 @@ Center {% endblock %} {% block content %}
 
         <button
           type="button"
-          class="text-xl sm:text-sm shop-now-btn mt-1 cursor-pointer text-white bg-[#25d366] hover:bg-[#25d339] focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mb-2"
+          class="text-xl sm:text-sm shop-now-btn mt-1 flex justify-center cursor-pointer text-white bg-[#25d366] hover:bg-[#25d339] focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 text-center items-center dark:focus:ring-[#1da1f2]/55 mb-2"
           data-id="{{ item.id }}"
         >
           <svg
@@ -98,9 +101,9 @@ Center {% endblock %} {% block content %}
 
     <div class="order-1 md:order-2">
       <div class="flex flex-col p-3 ">
-        <div class="row">
+        <a href="/media/{{item.image}}" class="row">
           <img class="rounded-2xl w-full sm:max-w-[450px] h-auto mx-auto" src="/media/{{item.image}}" alt="" />
-        </div>
+        </a>
         <div style="
         margin-top:10px;
         " 
@@ -136,6 +139,21 @@ Center {% endblock %} {% block content %}
 </div>
 {% endblock %} {% block javascript %}
 <script>
+  {% comment %} price logic {% endcomment %}
+  // Recompute and render “Rs. price × qty = total”
+function updateDisplay(itemId) {
+  const div   = document.getElementById("divpr" + itemId);
+  const price = parseFloat(div.dataset.price);
+  const qty   = cart[itemId] || 0;
+  const total = (price * qty).toFixed(0);
+
+  document.getElementById("val" + itemId).innerText = qty;
+  // show “Rs. 0” when qty is 0
+  document.getElementById("totalPrice" + itemId).innerText =
+    `Rs. ${total}`;
+}
+ 
+  {% comment %} price logic end {% endcomment %}
     let cart = {};
   if (localStorage.getItem('cart') === null) {
     cart = {};
@@ -156,51 +174,57 @@ Center {% endblock %} {% block content %}
         <span id="val${itemId}" class="text-lg font-semibold text-black px-2">${cart[itemId]}</span>
         <button id="plus${itemId}" class="cursor-pointer text-gray-900 bg-gradient-to-r from-li00 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center plus "><?xml version="1.0"?><svg fill="none" height="18" viewBox="0 0 16 16" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z" fill="#030708"/></svg></button>
       `;
+      updateDisplay(itemId);
     }
   });
   // ====== Plus / Minus Functionality ======
   $('.divpr').on("click", "button.minus", function () {
-    const itemId = this.id.slice(5); // removes 'minus'
-    if (cart[itemId] > 0) {
-      cart[itemId] -= 1;
-      document.getElementById("val" + itemId).innerHTML = cart[itemId];
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-  });
-
-  $('.divpr').on("click", "button.plus", function () {
-    const itemId = this.id.slice(4); // removes 'plus'
-    cart[itemId] += 1;
-    document.getElementById("val" + itemId).innerHTML = cart[itemId];
+  const itemId = this.id.slice(5);
+  if (cart[itemId] > 0) {
+    cart[itemId]--;
     localStorage.setItem('cart', JSON.stringify(cart));
-  });
+    updateDisplay(itemId);
+  }
+});
+
+$('.divpr').on("click", "button.plus", function () {
+  const itemId = this.id.slice(4);
+  cart[itemId]++;
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateDisplay(itemId);
+});
 
   {% comment %} whatsapp {% endcomment %}
 
+$(document).ready(function () {
+  $(".shop-now-btn").click(function () {
+    const itemId = $(this).data("id").toString();
+    const $prodDiv = $(`#divpr${itemId}`);
+    const product  = $prodDiv.data("product");
+    const price    = parseFloat($prodDiv.data("price"));
+    const quantity = (JSON.parse(localStorage.getItem("cart")||"{}"))[itemId] || 0;
 
-  $(document).ready(function () {
-    $(".shop-now-btn").click(function () {
-      const itemId = $(this).data("id").toString();
+    if (quantity <= 0) {
+      alert("Please select at least 1 quantity before ordering.");
+      return;
+    }
 
-      const $productDiv = $(`#divpr${itemId}`);
-      const product = $productDiv.data("product");
-      const price = $productDiv.data("price");
+    // NEW: compute total
+    const total = (price * quantity).toFixed(0);
 
-      const cart = JSON.parse(localStorage.getItem("cart") || "{}");
-      const quantity = cart[itemId] || 0;
+    const message = 
+      `Assalam-o-Alaikum! I want to buy this product:\n\n` +
+      `• Name: *${product}*\n` +
+      `• Quantity: *${quantity}*\n` +
+      `• Total Price: Rs. *${total}*\n\n` +
+      `Please confirm availability.`;
 
-      if (quantity <= 0) {
-        alert("Please select at least 1 quantity before ordering.");
-        return;
-      }
-
-      const message = `Assalam-o-Alaikum! I want to buy this product:\n\n• Name: *${product}*\n• Quantity: *${quantity}*\n• Price: Rs. *${price}*\n\nPlease confirm availability.`;
-
-      const phone = "923323550131";
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
-    });
+    const phone = "923323550131";
+    const url   = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
   });
+});
+
 </script>
 
 {% endblock %}

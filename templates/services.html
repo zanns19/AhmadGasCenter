@@ -131,7 +131,32 @@
     </div>
     {% endfor %}
   </div>
+  
+  <div class="flex justify-center gap-4 mt-4">
+    {% if product.has_previous %}
+    <a href="?gas_page={{ product.previous_page_number }}&kitchen_page={{ kitchen.number }}"
+    class="px-4 py-2 flex items-center  bg-gray-700 text-white rounded hover:bg-gray-800"><svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" style="
+    margin-top: 2.5px;
+    ">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+        </svg> Prev</a>
   {% endif %}
+
+  <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+    Page {{ product.number }} of {{ product.paginator.num_pages }}
+  </span>
+
+  {% if product.has_next %}
+  <a href="?gas_page={{ product.next_page_number }}&kitchen_page={{ kitchen.number }}"
+  class="px-4 py-2 bg-gray-700 flex items-center text-white rounded hover:bg-gray-800">Next <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" style="
+  margin-top: 2.5px;
+  ">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg></a>
+{% endif %}
+</div>
+{% endif %}
+
 {% if kitchen and category != 'gas' %}
 <h1 class="font-bold py-2 text-2xl text-center">Kitchen Items</h1>
   <div
@@ -212,9 +237,34 @@
     </div>
     {% endfor %}
   </div>
-   {% endif %}
-
+  
 </div>
+<div class="flex justify-center gap-4 mt-4">
+  {% if kitchen.has_previous %}
+  <a href="?kitchen_page={{ kitchen.previous_page_number }}&gas_page={{ product.number }}"
+  class="px-4 py-2 flex items-center bg-gray-700 text-white rounded hover:bg-gray-800"><svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" style="
+  margin-top: 2.5px;
+  ">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+</svg> Prev</a>
+{% endif %}
+
+<span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+  Page {{ kitchen.number }} of {{ kitchen.paginator.num_pages }}
+</span>
+
+{% if kitchen.has_next %}
+<a href="?kitchen_page={{ kitchen.next_page_number }}&gas_page={{ product.number }}"
+class="px-4 py-2 flex items-center bg-gray-700 text-white rounded hover:bg-gray-800">Next <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" style="
+margin-top: 2.5px;
+">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg></a>
+{% endif %}
+{% endif %}
+</div>
+
+
 {% endblock %} 
 
 

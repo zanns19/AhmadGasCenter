@@ -44,7 +44,7 @@ def services(request):
     # params={'product':Product_dataFinal,'kitchen':kitchens}
 # Gas Products Pagination
     gas_products = Product.objects.all()
-    gas_paginator = Paginator(gas_products, 4)  # Show 4 gas products per page
+    gas_paginator = Paginator(gas_products, 8)  # Show 4 gas products per page
     gas_page_number = request.GET.get('gas_page')
     gas_page_obj = gas_paginator.get_page(gas_page_number)
 

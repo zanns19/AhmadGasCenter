@@ -1,135 +1,228 @@
 {% extends "index.html" %}
+{% load static %}
 
 {% block title %}About | Ahmad Gas Center{% endblock  %}
 
 {% block content  %}
-<div class="">
-  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900 text-center">Customers also purchased</h2>
+<section class="container mx-auto px-4 py-4">
+  <div class="bg-gradient-to-r from-cyan-500 to-amber-300 py-10 px-6 sm:px-8 lg:px-12 rounded-lg shadow-xl text-center max-w-4xl mx-auto mt-10 mb-10">
+    <h1 class="text-3xl sm:text-6xl font-extrabold  ">
+      <span class="word-type-container1 gulzar-regular  text-blue-900 p-6 sm:pt-10 md:pt-16">خُوش آمدید 
+ - اَحمد گیس سینٹر مریدوالا</span>
+    </h1>   
+</div>
 
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Basic Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Black</p>
+          
+          <div class="bg-[#e2e2e2] p-10   my-5">
+              <h1 class=" libertinus-sans-regular-italic text-3xl sm:text-[40px]">...Quality is never an accident; it is always the result of intelligent effort. </h1>
+              <div class="text-end mr-1 opacity-75 sm:mr-6 text-xl">
+                <h1 class="font-bold mt-3.5">"John Ruskin"</h1>
+              </div>
           </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
+<div>
+  <h1 class="border-b-4 opacity-40 border-gray-600" style="
+  margin-top:52px; margin-bottom:52px;"></h1>
+</div>
+    <div class="flex flex-col md:flex-row items-center gap-12 my-4">
+      <!-- IMAGE COLUMN -->
+      <div class="md:w-1/2">
+        <img
+          src="{% static 'image/logo.jpg' %}"
+          alt="Ahmad Gas Center Facility"
+          class="reveal transform translate-y-70 opacity-0 transition-all duration-1400 ease-out rounded-lg shadow-lg"
+        />
       </div>
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg" alt="Front of men&#039;s Basic Tee in white." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Basic Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Aspen White</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
-      </div>
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg" alt="Front of men&#039;s Basic Tee in dark gray." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Basic Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Charcoal</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
-      </div>
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg" alt="Front of men&#039;s Artwork Tee in peach with white and brown dots forming an isometric cube." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Artwork Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
-      </div>
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg" alt="Front of men&#039;s Artwork Tee in peach with white and brown dots forming an isometric cube." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Artwork Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
-      </div>
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg" alt="Front of men&#039;s Artwork Tee in peach with white and brown dots forming an isometric cube." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Artwork Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
-      </div>
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg" alt="Front of men&#039;s Artwork Tee in peach with white and brown dots forming an isometric cube." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Artwork Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
-        </div>
-      </div>
-      <div class="group relative">
-        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg" alt="Front of men&#039;s Artwork Tee in peach with white and brown dots forming an isometric cube." class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a href="#">
-                <span aria-hidden="true" class="absolute inset-0"></span>
-                Artwork Tee
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
-          </div>
-          <p class="text-sm font-medium text-gray-900">$35</p>
+
+      <!-- TEXT COLUMN -->
+      <div class="md:w-1/2 space-y-6">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 uppercase text-center md:text-left">
+          The Clear Choice!
+        </h2>
+        <p class="text-gray-700 leading-relaxed">
+          Ahmad Gas Center with its presence in the Pakistani Kitchens for more than three decades has
+          constantly endeavored to give homemakers the latest in technology and making cooking a
+          luxurious and pleasurable experience. Our continuous pursuit of the true understanding of
+          customer’s needs and necessities, have made us constantly innovative. Always exploring
+          the possibility of new designs, technologies, features and innovations with great stress
+          on R &amp; D, Ahmad Gas Center has established its leadership in creating better products for
+          its customers.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Our vast network of dealers and service centers across the country ensures unfailing service
+          and support for ultimate consumer satisfaction.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Ahmad Gas Center’s products promise more efficient working and hassle-free life. It is this promise,
+          and its utmost fulfilment, that has made Ahmad Gas Center a trusted and loved household brand in
+          the country making it clearly the clear choice for the aspiring customers.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <li>5 Company Showrooms</li>
+            <li>1 Manufacturing &amp; Assembly Plants</li>
+            <li>100+ Exhibitions in Various Areas</li>
+          </ul>
+          <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <li>Most Trusted Brand Nationwide</li>
+            <li>2 Warehouses in Various Cities</li>
+            <li>Head Office in Gujranwala, Punjab PAKISTAN</li>
+          </ul>
         </div>
       </div>
     </div>
+    <div>
+  <h1 class="border-b-4 opacity-40 border-gray-600" style="
+  margin-top:52px; margin-bottom:52px;"></h1>
+</div>
+  <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8 p-8 mt-3">
+  <!-- Timeline -->
+  <div class="flex-1 max-w-2xl">
+    <h1 class="text-3xl font-bold mb-6">HISTORY OF AHMAD GAS CENTER</h1>
+
+   <!-- 2006: OPEN by default -->
+<div class="border-b border-gray-300 py-4">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">-</span>
+    <span class="text-3xl font-bold">2006</span>
+  </button>
+  <div class="content my-4 text-black">
+    Started manufacturing Ahmad Gas Center Appliances for a wide range of models & designs with a capacity of 100 pcs /day.
   </div>
 </div>
+
+<!-- 2008: CLOSED by default -->
+<div class="border-b border-gray-300 py-4">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">+</span>
+    <span class="text-3xl font-bold">2008</span>
+  </button>
+  <div class="content my-4 text-black hidden">
+    Expanded production lines to meet growing demand.
+  </div>
+</div>
+<!-- 2008: CLOSED by default -->
+<div class="border-b border-gray-300 py-4">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">+</span>
+    <span class="text-3xl font-bold">2008</span>
+  </button>
+  <div class="content my-4 text-black hidden">
+    Expanded production lines to meet growing demand.
+  </div>
+</div>
+<!-- 2008: CLOSED by default -->
+<div class="border-b border-gray-300 py-4">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">+</span>
+    <span class="text-3xl font-bold">2008</span>
+  </button>
+  <div class="content my-4 text-black hidden">
+    Expanded production lines to meet growing demand.
+  </div>
+</div>
+<!-- 2008: CLOSED by default -->
+<div class="border-b border-gray-300 py-4">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">+</span>
+    <span class="text-3xl font-bold">2008</span>
+  </button>
+  <div class="content my-4 text-black hidden">
+    Expanded production lines to meet growing demand.
+  </div>
+</div>
+<!-- 2008: CLOSED by default -->
+<div class="border-b border-gray-300 py-4">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">+</span>
+    <span class="text-3xl font-bold">2008</span>
+  </button>
+  <div class="content my-4 text-black hidden">
+    Expanded production lines to meet growing demand.
+  </div>
+</div>
+   
+   
+    <!-- Add more years similarly -->
+  </div>
+
+  <!-- Image -->
+  <div class="flex-1 max-w-lg">
+    <img
+      src="{% static 'image/logo.jpg' %}"
+      alt="Worker"
+      class="w-full h-auto rounded shadow reveal transform translate-y-70 opacity-0 transition-all duration-1400 ease-out "
+
+    />
+  </div>
+</div>
+  </section>
+
 {% endblock  %}
 
+{% block javascript %}
+<script>
+   setTimeout(() => {
+    document.getElementById("delayedText").classList.remove("hidden");
+  }, 2250); // 5000 milliseconds = 5 seconds
+  {% comment %} typing {% endcomment %}
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.remove("translate-y-70", "opacity-0");
+          entry.target.classList.add("translate-y-0", "opacity-100");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll(".reveal").forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+    //History
+  function toggleContent(button) {
+  const icon = button.querySelector('.icon');
+  const content = button.parentElement.querySelector('.content');
+  const isHidden = content.classList.contains('hidden');
+
+  // Close all other open sections
+  const allContents = document.querySelectorAll('.content');
+  const allIcons = document.querySelectorAll('.icon');
+  allContents.forEach(c => c.classList.add('hidden'));
+  allIcons.forEach(i => i.textContent = '+');
+
+  if (isHidden) {
+    // Open this one
+    content.classList.remove('hidden');
+    icon.textContent = '-';
+  } else {
+    // Keep it closed
+    content.classList.add('hidden');
+    icon.textContent = '+';
+  }
+}
+
+
+  </script>
+  {% endblock  %}

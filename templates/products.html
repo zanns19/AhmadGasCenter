@@ -31,19 +31,22 @@ Center {% endblock %} {% block content %}
       >
         <span
   id="totalPrice{{ item.id }}"
-  class="text-6xl sm:text-4xl text-center font-bold {% if item.price > 1500 %} text-red-900 {%else%} text-green-900 {%endif%}"
+  class="text-6xl sm:text-4xl text-center font-bold text-green-900"
 >
+
   <!-- JS will populate here -->
 </span>
 
         <!-- Each item's quantity control -->
         <div
           id="divpr{{ item.id }}"
+
           class="divpr mx-auto sm:my-[3px] my-[30px]"
           data-product="{{ item.product_name }}"
           data-price="{{ item.price }}"
         >
-          <span id="pr{{ item.id }}" class="my-2">
+          <span id="pr{{ item.id }}"
+ class="my-2">
             <!-- Buttons will be rendered by JS -->
           </span>
         </div>
@@ -81,21 +84,12 @@ Center {% endblock %} {% block content %}
         class="px-5"
         style="vertical-align: bottom; width: 96%; height: 326px"
       >
-        {% if "/products/kitchen/" in request.path %}
-        <div
-          class="fb-comments"
-          data-href="http://127.0.0.1:8000/products/kitchen/{{ item.id }}/"
-          data-width=""
-          data-numposts="5"
-        ></div>
-        {% else %}
-        <div
-          class="fb-comments"
-          data-href="http://127.0.0.1:8000/products/product/{{ item.id }}/"
-          data-width=""
-          data-numposts="5"
-        ></div>
-        {% endif %}
+      <div class="fb-comments"
+     data-href="{{ request.build_absolute_uri }}"
+     data-width=""
+     data-numposts="5">
+</div>
+
       </div>
     </div>
 
@@ -197,32 +191,39 @@ $('.divpr').on("click", "button.plus", function () {
   {% comment %} whatsapp {% endcomment %}
 
 $(document).ready(function () {
+  
   $(".shop-now-btn").click(function () {
-    const itemId = $(this).data("id").toString();
-    const $prodDiv = $(`#divpr${itemId}`);
-    const product  = $prodDiv.data("product");
-    const price    = parseFloat($prodDiv.data("price"));
-    const quantity = (JSON.parse(localStorage.getItem("cart")||"{}"))[itemId] || 0;
+  const itemId = $(this).data("id").toString();
+  const $prodDiv = $(`#divpr${itemId}`);
+  const product  = $prodDiv.data("product");
+  const price    = parseFloat($prodDiv.data("price"));
+  const quantity = (JSON.parse(localStorage.getItem("cart") || "{}"))[itemId] || 0;
 
-    if (quantity <= 0) {
-      alert("Please select at least 1 quantity before ordering.");
-      return;
-    }
+  if (!product || isNaN(price)) {
+    alert("Product data missing. Please try again.");
+    console.error("Missing data: ", { product, price });
+    return;
+  }
 
-    // NEW: compute total
-    const total = (price * quantity).toFixed(0);
+  if (quantity <= 0) {
+    alert("Please select at least 1 quantity before ordering.");
+    return;
+  }
 
-    const message = 
-      `Assalam-o-Alaikum! I want to buy this product:\n\n` +
-      `• Name: *${product}*\n` +
-      `• Quantity: *${quantity}*\n` +
-      `• Total Price: Rs. *${total}*\n\n` +
-      `Please confirm availability.`;
+  const total = (price * quantity).toFixed(0);
+  const message = 
+    `Assalam-o-Alaikum! I want to buy this product:\n\n` +
+    `• Name: *${product}*\n` +
+    `• Quantity: *${quantity}*\n` +
+    `• Total Price: Rs. *${total}*\n\n` +
+    `Please confirm availability.`;
 
-    const phone = "923323550131";
-    const url   = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-  });
+  const phone = "923323550131";
+  const url   = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+});
+
+
 });
 
 </script>

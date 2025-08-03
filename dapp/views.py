@@ -1,5 +1,5 @@
 from django.shortcuts import render ,HttpResponse
-from .models import Product , Kitchen_Items , Contact
+from .models import Product , Kitchen_Items , Contact , Discount
 from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models import Q
@@ -8,12 +8,31 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
-    products= Product.objects.all()
-    kitchens=Kitchen_Items.objects.all()
-    # allprods=[[products],[kitchens]]
-    n=len(products)
-    params={'product':products,'kitchen':kitchens}
-    return render(request,'index.html',params)
+    products = Product.objects.all()
+    kitchens = Kitchen_Items.objects.all()
+    discounts = Discount.objects.all()
+
+    selected_discounts = []
+    total = discounts.count()
+
+    if total >= 2:
+        selected_discounts.append({"item": discounts[0], "label": "In Stock"})
+        selected_discounts.append({"item": discounts[1], "label": "In Stock"})
+        if total > 3:
+            selected_discounts.append({"item": discounts[total - 2], "label": "New"})
+        selected_discounts.append({"item": discounts[total - 1], "label": "New"})
+
+    params = {
+        'product': products,
+        'kitchen': kitchens,
+        'discount': selected_discounts
+    }
+    return render(request, 'index.html', params)
+
+def discounts(request):
+    discounts=Discount.objects.all()
+    params={'discount':discounts}
+    return render(request,'discount.html',params)
 def services(request):
     # products= Product.objects.all()
     # paginator=Paginator(products,2)
@@ -118,17 +137,16 @@ def contact(request):
         )
     return render(request,'contact.html')
 def products(request, type, id):
-    if type == "product":
-        try:
-            item = Product.objects.get(id=id)
-        except Product.DoesNotExist:
-            return HttpResponse("Product not found", status=404)
-    elif type == "kitchen":
-        try:
-            item = Kitchen_Items.objects.get(id=id)
-        except Kitchen_Items.DoesNotExist:
-            return HttpResponse("Kitchen item not found", status=404)
-    else:
-        return HttpResponse("Invalid type", status=400)
+    item = None
+
+    if type in ["product", "products"]:
+        item = Product.objects.filter(id=id).first()
+    elif type in ["kitchen", "kitchens"]:
+        item = Kitchen_Items.objects.filter(id=id).first()
+    elif type in ["discount", "discounts"]:
+        item = Discount.objects.filter(id=id).first()
+
+    if not item:
+        return HttpResponse(f"{type.capitalize()} item not found", status=404)
 
     return render(request, 'products.html', {'item': item})

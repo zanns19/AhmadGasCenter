@@ -70,7 +70,6 @@
     --spacing: 0.25rem;
     --breakpoint-xl: 80rem;
     --container-lg: 32rem;
-    --container-xl: 36rem;
     --container-2xl: 42rem;
     --container-3xl: 48rem;
     --container-4xl: 56rem;
@@ -292,20 +291,8 @@
   .end-0 {
     inset-inline-end: calc(var(--spacing) * 0);
   }
-  .-top-9 {
-    top: calc(var(--spacing) * -9);
-  }
-  .-top-15 {
-    top: calc(var(--spacing) * -15);
-  }
   .top-0 {
     top: calc(var(--spacing) * 0);
-  }
-  .top-1 {
-    top: calc(var(--spacing) * 1);
-  }
-  .top-15 {
-    top: calc(var(--spacing) * 15);
   }
   .-bottom-5 {
     bottom: calc(var(--spacing) * -5);
@@ -356,9 +343,6 @@
   .mx-auto {
     margin-inline: auto;
   }
-  .my-1 {
-    margin-block: calc(var(--spacing) * 1);
-  }
   .my-2 {
     margin-block: calc(var(--spacing) * 2);
   }
@@ -373,12 +357,6 @@
   }
   .my-8 {
     margin-block: calc(var(--spacing) * 8);
-  }
-  .my-9 {
-    margin-block: calc(var(--spacing) * 9);
-  }
-  .my-16 {
-    margin-block: calc(var(--spacing) * 16);
   }
   .my-\[30px\] {
     margin-block: 30px;
@@ -425,9 +403,6 @@
   .mt-16 {
     margin-top: calc(var(--spacing) * 16);
   }
-  .mt-28 {
-    margin-top: calc(var(--spacing) * 28);
-  }
   .mr-1 {
     margin-right: calc(var(--spacing) * 1);
   }
@@ -466,12 +441,6 @@
   }
   .mb-14 {
     margin-bottom: calc(var(--spacing) * 14);
-  }
-  .mb-16 {
-    margin-bottom: calc(var(--spacing) * 16);
-  }
-  .mb-24 {
-    margin-bottom: calc(var(--spacing) * 24);
   }
   .ml-2 {
     margin-left: calc(var(--spacing) * 2);
@@ -530,12 +499,6 @@
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
-  .h-12 {
-    height: calc(var(--spacing) * 12);
-  }
-  .h-16 {
-    height: calc(var(--spacing) * 16);
-  }
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
@@ -565,9 +528,6 @@
   }
   .min-h-\[74svh\] {
     min-height: 74svh;
-  }
-  .min-h-screen {
-    min-height: 100vh;
   }
   .w-1\/4 {
     width: calc(1/4 * 100%);
@@ -599,14 +559,8 @@
   .w-10 {
     width: calc(var(--spacing) * 10);
   }
-  .w-16 {
-    width: calc(var(--spacing) * 16);
-  }
   .w-44 {
     width: calc(var(--spacing) * 44);
-  }
-  .w-48 {
-    width: calc(var(--spacing) * 48);
   }
   .w-48\.5 {
     width: calc(var(--spacing) * 48.5);
@@ -677,17 +631,11 @@
   .items-center {
     align-items: center;
   }
-  .items-start {
-    align-items: flex-start;
-  }
   .justify-between {
     justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
-  }
-  .gap-1 {
-    gap: calc(var(--spacing) * 1);
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -704,26 +652,8 @@
   .gap-12 {
     gap: calc(var(--spacing) * 12);
   }
-  .gap-14 {
-    gap: calc(var(--spacing) * 14);
-  }
-  .gap-16 {
-    gap: calc(var(--spacing) * 16);
-  }
   .gap-\[60px\] {
     gap: 60px;
-  }
-  .gap-\[80px\] {
-    gap: 80px;
-  }
-  .gap-\[100px\] {
-    gap: 100px;
-  }
-  .gap-\[120px\] {
-    gap: 120px;
-  }
-  .gap-\[1000px\] {
-    gap: 1000px;
   }
   :where(.space-y-2 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
@@ -967,9 +897,6 @@
     --tw-gradient-to: var(--color-red-600);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-  .object-contain {
-    object-fit: contain;
-  }
   .object-cover {
     object-fit: cover;
   }
@@ -1035,9 +962,6 @@
   }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
-  }
-  .py-5 {
-    padding-block: calc(var(--spacing) * 5);
   }
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
@@ -1256,20 +1180,11 @@
   .opacity-40 {
     opacity: 40%;
   }
-  .opacity-50 {
-    opacity: 50%;
-  }
   .opacity-60 {
     opacity: 60%;
   }
   .opacity-75 {
     opacity: 75%;
-  }
-  .opacity-80 {
-    opacity: 80%;
-  }
-  .opacity-85 {
-    opacity: 85%;
   }
   .opacity-90 {
     opacity: 90%;
@@ -1581,11 +1496,6 @@
     }
   }
   @media (width >= 40rem) {
-    .sm\:max-w-xl {
-      max-width: var(--container-xl);
-    }
-  }
-  @media (width >= 40rem) {
     .sm\:-rotate-6 {
       rotate: calc(6deg * -1);
     }
@@ -1649,11 +1559,6 @@
   @media (width >= 40rem) {
     .sm\:py-8 {
       padding-block: calc(var(--spacing) * 8);
-    }
-  }
-  @media (width >= 40rem) {
-    .sm\:py-12 {
-      padding-block: calc(var(--spacing) * 12);
     }
   }
   @media (width >= 40rem) {

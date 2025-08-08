@@ -1,11 +1,11 @@
 from django.shortcuts import render ,HttpResponse
-from .models import Product , Kitchen_Items , Contact , Discount
+from .models import Product , Kitchen_Items , Contact , Discount,KitchenCategory
+
 from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models import Q
 from django.core.paginator import Paginator
-
-
+   
 # Create your views here.
 def index(request):
     products = Product.objects.all()
@@ -15,12 +15,14 @@ def index(request):
     selected_discounts = []
     total = discounts.count()
 
+    
     if total >= 2:
-        selected_discounts.append({"item": discounts[0], "label": "In Stock"})
-        selected_discounts.append({"item": discounts[1], "label": "In Stock"})
-        if total > 3:
-            selected_discounts.append({"item": discounts[total - 2], "label": "New"})
-        selected_discounts.append({"item": discounts[total - 1], "label": "New"})
+         selected_discounts.append({"item": discounts[0], "label": "In Stock", "class": "first"})
+         selected_discounts.append({"item": discounts[1], "label": "In Stock", "class": "second"})
+         if total > 3:
+             selected_discounts.append({"item": discounts[total - 2], "label": "New", "class": "second-last"})
+             selected_discounts.append({"item": discounts[total - 1], "label": "New", "class": "last"})
+
 
     params = {
         'product': products,
@@ -44,19 +46,23 @@ def services(request):
     # params={'product':Product_dataFinal,'kitchen':kitchens}
 # Gas Products Pagination
     gas_products = Product.objects.all()
-    gas_paginator = Paginator(gas_products, 8)  # Show 4 gas products per page
+    gas_paginator = Paginator(gas_products, 12)  # Show 12 gas products per page
     gas_page_number = request.GET.get('gas_page')
     gas_page_obj = gas_paginator.get_page(gas_page_number)
 
     # Kitchen Items Pagination
     kitchen_items = Kitchen_Items.objects.all()
-    kitchen_paginator = Paginator(kitchen_items, 8)  # Show 4 kitchen items per page
+    kitchen_paginator = Paginator(kitchen_items, 12)  # Show 12 kitchen items per page
     kitchen_page_number = request.GET.get('kitchen_page')
     kitchen_page_obj = kitchen_paginator.get_page(kitchen_page_number)
+    categories = KitchenCategory.objects.prefetch_related('kitchen_items').all()
+    
+
 
     context = {
         'product': gas_page_obj,
         'kitchen': kitchen_page_obj,
+        'categories': categories
     }
 
     return render(request,'services.html',context)
@@ -69,31 +75,29 @@ def search(request):
     products = []
     kitchens = []
 
-    # Mapping for display
     category_display = {
         'all': 'All Categories',
-        'gas': 'Gas Items',
-        'kitchen': 'Kitchen Items'
+        'kitchen': 'Kitchen Appliances',
+        'gas': 'Camping Stoves',
+        'hood': 'Hood',
+        'built': 'Built-In',
+        'stove': 'Stove'
     }
 
     category_label = category_display.get(category, 'All Categories')
 
-    if query:
-        if category == "gas":
-            products = Product.objects.filter(
-                Q(product_name__icontains=query) | Q(desc__icontains=query)
-            )
-        elif category == "kitchen":
-            kitchens = Kitchen_Items.objects.filter(
-                Q(product_name__icontains=query) | Q(desc__icontains=query)
-            )
-        else:
-            products = Product.objects.filter(
-                Q(product_name__icontains=query) | Q(desc__icontains=query)
-            )
-            kitchens = Kitchen_Items.objects.filter(
-                Q(product_name__icontains=query) | Q(desc__icontains=query)
-            )
+    if category == 'gas':
+        products = Product.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+    elif category in ['hood', 'built', 'stove']:
+        kitchens = Kitchen_Items.objects.filter(
+            Q(product_name__icontains=query) | Q(desc__icontains=query),
+            category__name__iexact=category
+        )
+    elif category == 'kitchen':
+        kitchens = Kitchen_Items.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+    else:
+        products = Product.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+        kitchens = Kitchen_Items.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
 
     return render(request, 'services.html', {
         'product': products,

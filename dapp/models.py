@@ -1,14 +1,24 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
+# models.py
+from django.db import models
+
+class KitchenCategory(models.Model):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
 class Kitchen_Items(models.Model):
-    product_id =models.AutoField
-    product_name=models.CharField(max_length=120,default="")
-    desc=models.CharField(max_length=1020,default="")
-    price=models.IntegerField(default=0)
-    rating=models.FloatField(default=0)
-    image =models.ImageField(upload_to='dapp/images')
-    pub_date=models.DateField()
+    category = models.ForeignKey(KitchenCategory,null=True, related_name='kitchen_items', on_delete=models.CASCADE)
+    product_name = models.CharField(max_length=120, default="")
+    desc = models.CharField(max_length=1020, default="")
+    price = models.IntegerField(default=0)
+    rating = models.FloatField(default=0)
+    image = models.ImageField(upload_to='dapp/images')
+    pub_date = models.DateField()
 
     def __str__(self):
         return self.product_name
@@ -21,7 +31,7 @@ class Product(models.Model):
     price=models.IntegerField(default=0)
     rating=models.FloatField(default=0)
     image =models.ImageField(upload_to='dapp/images')
-    pub_date=models.DateField()
+    pub_date=models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.product_name
@@ -35,7 +45,7 @@ class Discount(models.Model):
     dist=models.IntegerField(default=0)
     rating=models.FloatField(default=0)
     image =models.ImageField(upload_to='dapp/images')
-    pub_date=models.DateField()
+    pub_date=models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.product_name

@@ -88,8 +88,8 @@
   overflow: hidden;
   white-space: nowrap;
   direction: rtl; /* important for Urdu */
-  border-left: 0.15em solid white; /* blinking cursor on right side */
-  animation: typing1 3.5s steps(49, end), blink-caret1 0.1s step-end infinite;
+  border-left: 0.05em solid white; /* blinking cursor on right side */
+  animation: typing1 3.5s steps(49, end), blink-caret1 1s step-end infinite;
 }
 
 /* Typing effect */
@@ -101,7 +101,7 @@
 /* Blinking cursor effect */
 @keyframes blink-caret1 {
   from, to { border-color: transparent }
-  50% { border-color: transparent }
+  50% { border-color: white }
 }
 
 

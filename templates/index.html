@@ -35,7 +35,7 @@
         <div class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700 {% if d.class %}{{ d.class }}{% endif %}">
             <div class="h-80 overflow-hidden flex items-center justify-center my-4">
                 <a href="/media/{{i.image}}" class="items-center">
-                    <img class="w-full h-full object-cover p-4 hover:opacity-75" src="/media/{{i.image}}" alt="product image"/>
+                    <img class="w-full h-full object-cover p-4 hover:scale-125 transition-transform ease-in-out duration-300" src="/media/{{i.image}}" alt="product image"/>
                 </a>
             </div>
 
@@ -127,7 +127,7 @@
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:opacity-75"
+            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
             src="/media/{{i.image}}"
             alt="product image"
           />
@@ -135,7 +135,7 @@
       </div>
 
       <div class="px-5 pb-5">
-         <h2 class="font-extrabold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
         <p class="text-xs sm:text-[16px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
@@ -219,7 +219,7 @@
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:opacity-75"
+            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
             src="/media/{{i.image}}"
             alt="product image"
           />
@@ -227,7 +227,7 @@
       </div>
 
       <div class="px-5 pb-5">
-         <h2 class="font-extrabold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
         <p class="text-xs sm:text-[16px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
@@ -368,7 +368,7 @@ $('.cart').click(function(){
       var price = $(this).data("price");
 
       var message = `Asslam-o-Alaikum! I want to buy this product:\n\nName: *${product}*\nPrice: Rs. *${price}*\n\nIs this available?.`;
-      var phone = "923323550131"; // 🔁 Replace with your WhatsApp number (without +)
+      var phone = "923356599132"; // 🔁 Replace with your WhatsApp number (without +)
 
       var url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");

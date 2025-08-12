@@ -1,5 +1,5 @@
 from django.shortcuts import render ,HttpResponse
-from .models import Product , Kitchen_Items , Contact , Discount,KitchenCategory
+from .models import Product , Kitchen_Items , Contact , Discount,KitchenCategory,Instant_Gyser,Regulator,Valves,Accessories
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -57,10 +57,35 @@ def services(request):
     kitchen_page_obj = kitchen_paginator.get_page(kitchen_page_number)
     categories = KitchenCategory.objects.prefetch_related('kitchen_items').all()
     
+    # Gyser Items Pagination
+    gyser_products = Instant_Gyser.objects.all()
+    gyser_paginator = Paginator(gyser_products, 12)  # Show 12 gas products per page
+    gyser_page_number = request.GET.get('gyser_page')
+    gyser_page_obj = gyser_paginator.get_page(gyser_page_number)
+    # Gyser Items Pagination
+    regulator_products = Regulator.objects.all()
+    regulator_paginator = Paginator(regulator_products, 12)  # Show 12 gas products per page
+    regulator_page_number = request.GET.get('regulator_page')
+    regulator_page_obj = regulator_paginator.get_page(regulator_page_number)
+    # Gyser Items Pagination
+    valves_products = Valves.objects.all()
+    valves_paginator = Paginator(valves_products, 12)  # Show 12 gas products per page
+    valves_page_number = request.GET.get('valves_page')
+    valves_page_obj = valves_paginator.get_page(valves_page_number)
+    # Gyser Items Pagination
+    accessories_products = Accessories.objects.all()
+    accessories_paginator = Paginator(accessories_products, 12)  # Show 12 gas products per page
+    accessories_page_number = request.GET.get('accessories_page')
+    accessories_page_obj = accessories_paginator.get_page(accessories_page_number)
+
 
 
     context = {
         'product': gas_page_obj,
+        'gyser': gyser_page_obj,
+        'regulator': regulator_page_obj,
+        'valves': valves_page_obj,
+        'accessories': accessories_page_obj,
         'kitchen': kitchen_page_obj,
         'categories': categories
     }
@@ -74,13 +99,21 @@ def search(request):
 
     products = []
     kitchens = []
+    gysers = []
+    regulators = []
+    accessoriess = []
+    valves = []
 
     category_display = {
         'all': 'All Categories',
         'kitchen': 'Kitchen Appliances',
         'gas': 'Camping Stoves',
+        'gyser': 'Instant Gyser',
+        'regulator': 'Regulator',
+        'valves': 'Valves',
+        'accessories': 'Accessories',
         'hood': 'Hood',
-        'built': 'Built-In',
+        'built': 'Built in HOB',
         'stove': 'Stove'
     }
 
@@ -95,13 +128,29 @@ def search(request):
         )
     elif category == 'kitchen':
         kitchens = Kitchen_Items.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+    elif category == 'gyser':
+         gysers = Instant_Gyser.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+    elif category == 'regulator':
+         regulators = Regulator.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+    elif category == 'valves':
+         valves = Valves.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+    elif category == 'accessories':
+         accessoriess = Accessories.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
     else:
         products = Product.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
         kitchens = Kitchen_Items.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+        gysers = Instant_Gyser.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+        regulators = Regulator.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+        valves = Valves.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
+        accessoriess = Accessories.objects.filter(Q(product_name__icontains=query) | Q(desc__icontains=query))
 
     return render(request, 'services.html', {
         'product': products,
         'kitchen': kitchens,
+        'gyser': gysers,
+        'regulator': regulators,
+        'valves': valves,
+        'accessories': accessoriess,
         'query': query,
         'category_label': category_label,
     })
@@ -149,6 +198,14 @@ def products(request, type, id):
         item = Kitchen_Items.objects.filter(id=id).first()
     elif type in ["discount", "discounts"]:
         item = Discount.objects.filter(id=id).first()
+    elif type in ["gyser", "gysers"]:
+        item = Instant_Gyser.objects.filter(id=id).first()
+    elif type in ["regulator", "regulators"]:
+        item = Regulator.objects.filter(id=id).first()
+    elif type in ["valves", "valvess"]:
+        item = Valves.objects.filter(id=id).first()
+    elif type in ["accessories", "accessories"]:
+        item = Accessories.objects.filter(id=id).first()
 
     if not item:
         return HttpResponse(f"{type.capitalize()} item not found", status=404)

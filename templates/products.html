@@ -1,16 +1,16 @@
 {% extends "base.html" %} {% block title %} {{ item.product_name }} | Ahmad Gas
 Center {% endblock %} {% block content %}
-<div class="my-4">
+<div class=" my-1.5 sm:my-4">
   <div
-    class="flex gap-6 flex-col md:flex-row md:justify-normal p-4"
+    class="flex gap-1 sm:gap-3 md:gap-6 flex-col md:flex-row md:justify-normal p-1.5 sm:p-4"
   >
     <div class="md:w-1/2 w-full order-2 md:order-1">
       <div class="min-h-64">
-        <h1 class="font-bold text-4xl mb-4 underline text-pink-700">
+        <h1 class="font-bold text-2xl sm:text-4xl mb-4 px-2 sm:px-0 underline text-pink-700">
           {{item.product_name}}:
         </h1>
 
-        <div x-data="{ expanded: false }" class="px-5 text-xl">
+        <div x-data="{ expanded: false }" class="px-5 text-lg sm:text-xl">
           <p
             :class="expanded ? 'max-h-full' : 'max-h-[10.5rem] overflow-hidden'"
             class="transition-all duration-300"
@@ -31,7 +31,7 @@ Center {% endblock %} {% block content %}
       >
         <span
   id="totalPrice{{ item.id }}"
-  class="text-6xl sm:text-4xl text-center font-bold text-green-900"
+  class="text-5xl sm:text-4xl text-center font-bold text-green-900"
 >
 
   <!-- JS will populate here -->
@@ -53,7 +53,7 @@ Center {% endblock %} {% block content %}
 
         <button
           type="button"
-          class="text-xl sm:text-sm shop-now-btn mt-1 flex justify-center cursor-pointer text-white bg-[#25d366] hover:bg-[#25d339] focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-5 py-2.5 text-center items-center dark:focus:ring-[#1da1f2]/55 mb-2"
+          class="text-lg sm:text-sm shop-now-btn mt-1 flex justify-center cursor-pointer text-white  bg-[#31d325] hover:bg-[#25d365] focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg px-2 sm:px-5 py-2.5 text-center items-center dark:focus:ring-[#1da1f2]/55 mb-2"
           data-id="{{ item.id }}"
         >
           <svg
@@ -95,18 +95,89 @@ Center {% endblock %} {% block content %}
 
     <div class="order-1 md:order-2">
       <div class="flex flex-col p-3 ">
-        <a href="/media/{{item.image}}" class="row">
+         <div class="relative group sm:max-w-[450px] mx-auto rounded-2xl overflow-hidden">
+        <a href="/media/{{item.image}}" class="block">
           <img class="rounded-2xl w-full sm:max-w-[450px] h-auto mx-auto" src="/media/{{item.image}}" alt="" />
-        </a>
+        
+         <div class="absolute inset-0 bg-[#e20219] opacity-70 flex items-center justify-center
+                  translate-y-[-100%] group-hover:translate-y-0 
+                  transition-transform duration-300 ease-in-out">
+        <!-- Camera Icon -->
+         
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="2" stroke="currentColor"
+             class="w-12 h-12 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M3 7h3l2-3h8l2 3h3v13H3V7z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      </div>
+      </a>
+    </div>
         <div style="
         margin-top:10px;
         " 
         >
           {% if "/products/kitchen/" in request.path %}
           <div
-            class="fb-like"
+            class="fb-like "
             data-href="http://127.0.0.1:8000/products/kitchen/{{ item.id }}/"
-            data-width="320"
+            data-width="314"
+            data-layout="standard"
+            data-show-faces="true"
+            data-action="like"
+            data-size="large"
+            data-share="true"
+          ></div>
+          {% elif "/products/gyser/ in request.path" %}
+          <div
+            class="fb-like "
+            data-href="http://127.0.0.1:8000/products/gyser/{{ item.id }}/"
+            data-width="314"
+            data-layout="standard"
+            data-show-faces="true"
+            data-action="like"
+            data-size="large"
+            data-share="true"
+          ></div>
+          {% elif "/products/valves/ in request.path" %}
+          <div
+            class="fb-like "
+            data-href="http://127.0.0.1:8000/products/valves/{{ item.id }}/"
+            data-width="314"
+            data-layout="standard"
+            data-show-faces="true"
+            data-action="like"
+            data-size="large"
+            data-share="true"
+          ></div>
+          {% elif "/products/accessories/ in request.path" %}
+          <div
+            class="fb-like "
+            data-href="http://127.0.0.1:8000/products/accessories/{{ item.id }}/"
+            data-width="314"
+            data-layout="standard"
+            data-show-faces="true"
+            data-action="like"
+            data-size="large"
+            data-share="true"
+          ></div>
+          {% elif "/products/regulator/ in request.path" %}
+          <div
+            class="fb-like "
+            data-href="http://127.0.0.1:8000/products/regulator/{{ item.id }}/"
+            data-width="314"
+            data-layout="standard"
+            data-show-faces="true"
+            data-action="like"
+            data-size="large"
+            data-share="true"
+          ></div>
+          {% elif "/products/discount/ in request.path" %}
+          <div
+            class="fb-like "
+            data-href="http://127.0.0.1:8000/products/discount/{{ item.id }}/"
+            data-width="314"
             data-layout="standard"
             data-show-faces="true"
             data-action="like"
@@ -117,7 +188,7 @@ Center {% endblock %} {% block content %}
           <div
             class="fb-like "
             data-href="http://127.0.0.1:8000/products/product/{{ item.id }}/"
-            data-width="320"
+            data-width="314"
             data-layout="standard"
             data-show-faces="true"
             data-action="like"
@@ -159,7 +230,7 @@ function updateDisplay(itemId) {
   document.querySelectorAll(".divpr").forEach(div => {
     const itemId = div.id.replace("divpr", "");
 
-    if (!cart[itemId]) cart[itemId] = 0; // Default to 0
+    cart[itemId] = 1; // Default to 0
 
     const pr = document.getElementById("pr" + itemId);
     if (pr) {
@@ -218,7 +289,7 @@ $(document).ready(function () {
     `• Total Price: Rs. *${total}*\n\n` +
     `Please confirm availability.`;
 
-  const phone = "923323550131";
+  const phone = "923356599132";
   const url   = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });

@@ -35,6 +35,54 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+#Instan_Gysers
+class Instant_Gyser(models.Model):
+    product_id =models.AutoField
+    product_name=models.CharField(max_length=120,default="")
+    desc=models.CharField(max_length=1020,default="")
+    price=models.IntegerField(default=0)
+    rating=models.FloatField(default=0)
+    image =models.ImageField(upload_to='dapp/images')
+    pub_date=models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.product_name
+#Regulators
+class Regulator(models.Model):
+    product_id =models.AutoField
+    product_name=models.CharField(max_length=120,default="")
+    desc=models.CharField(max_length=1020,default="")
+    price=models.IntegerField(default=0)
+    rating=models.FloatField(default=0)
+    image =models.ImageField(upload_to='dapp/images')
+    pub_date=models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.product_name
+#Valves
+class Valves(models.Model):
+    product_id =models.AutoField
+    product_name=models.CharField(max_length=120,default="")
+    desc=models.CharField(max_length=1020,default="")
+    price=models.IntegerField(default=0)
+    rating=models.FloatField(default=0)
+    image =models.ImageField(upload_to='dapp/images')
+    pub_date=models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.product_name
+#Accessories
+class Accessories(models.Model):
+    product_id =models.AutoField
+    product_name=models.CharField(max_length=120,default="")
+    desc=models.CharField(max_length=1020,default="")
+    price=models.IntegerField(default=0)
+    rating=models.FloatField(default=0)
+    image =models.ImageField(upload_to='dapp/images')
+    pub_date=models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.product_name
 #Discounts
 class Discount(models.Model):
     discounts_id =models.AutoField

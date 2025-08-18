@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> {% block title %}Ahmad Gas Center{% endblock  %} </title>
+    <title> {% block title %}Ahmad ElectroGas{% endblock  %} </title>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="{% static 'image/favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'image/nav.png' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -65,7 +65,7 @@
         display: inline-block; /* Essential for text to fit the animated width */
         white-space: nowrap;  /* Prevents text from wrapping */
         overflow: hidden;     /* Hides overflowing text during animation */
-        border-right: 0.15em solid white; /* Simulates a blinking cursor */
+        border-right: 0.10em solid white; /* Simulates a blinking cursor */
         animation: typing 7.5s forwards, blink-caret 0.60s step-end infinite;
         /* Adjust typing duration (7.5s) as needed for your text length */
     }
@@ -103,6 +103,16 @@
   from, to { border-color: transparent }
   50% { border-color: white }
 }
+.blinking {
+  animation: blink-caret12 2s ease-in-out infinite;
+}
+
+/* Smooth blinking effect */
+@keyframes blink-caret12 {
+  0%, 100% { opacity: 1; }   /* fully visible */
+  50% { opacity: 0; }        /* fully invisible */
+}
+
 
 
 
@@ -123,7 +133,7 @@
   bottom: 0;
   width: 0%;
   height: 2px;
-  background-color: #e2c300;
+  background-color: #0E6BA8;
   transition: width 0.3s ease;
 }
 
@@ -135,7 +145,7 @@
 /* Active state */
 .nav-link.active::after {
   width: 100%;
-  background-color: #fdc700;
+  background-color: #0E6BA8;
 }
 
 /* Adjust for smaller screens */
@@ -165,20 +175,20 @@
   bottom: 0;
   width: 0%;
   height: 2px;
-  background-color: #e2c300;
+  background-color: #0E6BA8;
   transition: width 0.3s ease;
 }
 
 /* Hover effect for all screens */
 .nav-link1:hover::after {
   width: 100%;
-  background-color: #e7f218
+  background-color: #0E6BA8;
 }
 
 /* Active state */
 .nav-link1.active::after {
   width: 100%;
-  background-color: #fdc700;
+  background-color: #0E6BA8;
 }
 
 /* Adjust for smaller screens */
@@ -207,7 +217,11 @@
       height: 600px;
     }
   }
-                       
+       
+  @keyframes flip {
+  0%   { transform: rotateX(0deg); }
+  100% { transform: rotateX(360deg); }
+}
 
 </style>
     {% tailwind_css %}
@@ -216,17 +230,17 @@
 {% comment %} bg-gradient-to-r from-[#d325d14d] to-[#213ecc4d] {% endcomment %}
 <body class=" font-sans leading-normal tracking-normal">
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v23.0"></script>
-
-<div class="">
+<nav class="border-gray-200 w-full bg-[#FFFFFF] text-white dark:bg-gray-800  dark:border-gray-700 sm:sticky sm:top-0 sm:shadow sm:z-50">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+   <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse group">
+  <img src="{% static 'image/nav.png' %}" 
+       class="h-10 rounded-full transition-transform group-hover:[animation:flip_1s_linear_infinite]" 
+       alt="Ahmad ElectroGas Logo" />
+            <span class="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap text-[#0B2540]">Ahmad <span class="text-[#0c6b87]">Electro</span>Gas</span>
+    </a>
     
 
-<nav class="border-gray-200 w-full bg-gradient-to-r from-[#126908ad] to-[#1849f2c7] text-white dark:bg-gray-800 dark:border-gray-700">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="{% static 'image/nav.jpg' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img  src="{% static 'image/nav.jpg' %}" class="h-8 rounded-full" alt="Logo" />
-        <span class="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap dark:text-white">Ahmad Gas Center</span>
-    </a>
-    <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
+    <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-[#0E6BA8] rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -237,11 +251,11 @@
 
   <li>
   <a href="/"
-     class="nav-link block relative py-2 px-3 md:p-0 hover:text-amber-200 
+     class="nav-link block relative py-2 px-3 md:p-0 hover:text-[#0E6BA8] 
             {% if request.path == '/' %}
-              active text-yellow-400
+              active text-[#0E6BA8]
             {% else %}
-              text-white
+              text-[#0B2540]
             {% endif %}">
     Home
   </a>
@@ -251,7 +265,7 @@
   <li>
   <a href="/services"
      class="block  py-2 px-3 md:p-0 relative nav-link
-       hover:text-amber-200     {% if '/services' in request.path %}active text-yellow-400 {% else %}text-white{% endif %}">
+       hover:text-[#0E6BA8]     {% if '/services' in request.path %}active text-[#0E6BA8] {% else %}text-[#0B2540]{% endif %}">
     Products
   </a>
 </li>
@@ -260,7 +274,7 @@
   <li>
     <a href="/about"
        class="block home py-2 px-3 md:p-0 relative rounded-sm nav-link
-    hover:text-amber-200          {% if request.path == '/about' %}active text-yellow-400 {% else %}text-white{% endif %}">
+    hover:text-[#0E6BA8]          {% if request.path == '/about' %}active text-[#0E6BA8] {% else %}text-[#0B2540]{% endif %}">
       About
     </a>
   </li>
@@ -268,7 +282,7 @@
   <li>
     <a href="/contact"
        class="block home py-2 px-3 md:p-0 relative rounded-sm nav-link
-      hover:text-amber-200        {% if request.path == '/contact' %}active text-yellow-400  {% else %}text-white{% endif %}">
+      hover:text-[#0E6BA8]        {% if request.path == '/contact' %}active text-[#0E6BA8]  {% else %}text-[#0B2540]{% endif %}">
       Contact
     </a>
   </li>
@@ -279,32 +293,160 @@
   </div>
 </nav>
 
-    <section class="container mx-auto md:max-w-[1270px] min-h-[74svh] sm:min-h-[71svh]">
+  <h1 class="border opacity-40 border-gray-600"></h1>
+</div>
+
+    <section class="container mx-auto  min-h-[74svh] sm:min-h-[71svh]">
         {% block content  %}{% endblock  %}
     </section>
     
 
-<footer class="bg-gradient-to-r from-[#1f49cb] to-[#18d2f2] rounded-lg shadow-sm dark:bg-gray-900 m-2">
-    <div class="w-full max-w-screen-xl mx-auto p-1.5 sm:p-4 md:py-4">
-        <div class="sm:flex sm:items-center justify-center sm:justify-between">
-            <span class="flex justify-center sm:justify-normal text-sm sm:text-lg md:text-2xl  font-bold text-white sm:text-center">© 2025 Ahmad Gas Center.All Rights Reserved.</span>
-            <ul class="flex gap-8 justify-center my-2 sm:justify-normal items-center text-sm font-medium text-white sm:mb-0 dark:text-gray-400 mt-2.5">
-                <li>
-                    <a href="https://www.facebook.com/profile.php?id=100064013284416" class="" title="By clicking, you will visit Ahmad Gas Center's Facebook page."><img class="hover:scale-150 transition-transform ease-in-out duration-300" src="{% static 'image/fb.png' %}" alt=""></a>
-                </li>
-                <li>
-                    <a href="https://wa.me/+923356599132" class="" title="Message Ahmad Gas Center on WhatsApp.."><img class="hover:scale-150 transition-transform ease-in-out duration-300" src="{% static 'image/wp.png' %}" alt=""></a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/ahmd_h251/profilecard/?igsh=dTd6Yjd2YXh4b2Rn" class="" title="Visit Ahmad Gas Center on Instagram."><img class="hover:scale-150 transition-transform ease-in-out duration-300" src="{% static 'image/im.png' %}" alt=""></a>
-                </li>
-                <li>
-                    <a href="https://www.tiktok.com/@ahmad.gas.center?_t=ZS-8yW6G3oEgXU&_r=1" class="" title="Visit Ahmad Gas Center on TikTok."><img class="hover:scale-150 transition-transform ease-in-out duration-300" src="{% static 'image/tk.png' %}" alt=""></a>
-                </li>
-            </ul>
-        </div>
-        <hr class="my-2 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4" />
-        <span class="flex justify-center text-sm sm:text-lg md:text-2xl text-white sm:text-center dark:text-gray-400">Created By:&nbsp;<a href="https://github.com/zanns19" target="_blank" class="nav-link1 font-bold text-[#FFFFFF] hover:text-[#e7f218]">ZUHAIR ANNS ANWAR</a></span>
+<footer class="bg-[#071724] sm:pt-4 text-[#E6F6FF] shadow-sm dark:bg-gray-900 ">
+  
+<div class="max-w-7xl mx-auto flex mt-4 flex-col md:flex-row gap-2  md:justify-evenly md:gap-24">
+
+    <div class="space-y-4 max-w-1/3 hidden md:block">
+      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+  <div class="group perspective">
+    <img src="{% static 'image/nav.png' %}" 
+         class="h-10 rounded-full bg-amber-50 transform transition-transform duration-700 group-hover:[transform:rotateY(180deg)]" 
+         alt="Ahmad ElectroGas Logo" />
+  </div>
+  <span class="self-center text-2xl text-[#E6F6FF] font-bold whitespace-nowrap">
+    Ahmad ElectroGas
+  </span>
+</a>
+
+      <hr class="border-gray-500 opacity-50" />
+      <p class="text-[#E6F6FF] leading-relaxed text-sm" style="
+    padding-left: 40px;
+">
+
+        Ahmad ElectroGas, with its presence in Pakistani kitchens for over three decades, constantly endeavors to provide the latest technology, making cooking a luxurious and pleasurable experience. Our continuous pursuit of understanding customer needs drives our innovation.
+      </p>
+    </div>
+  <div class="border-b border-gray-300 py-2.5 md:hidden block">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">-</span>
+    <span class="text-xl sm:text-2xl md:text-3xl font-bold">Ahmad ElectroGas</span>
+  </button>
+  <div class="content my-2 px-4 text-[#E6F6FF]">
+Ahmad ElectroGas embarked on its journey in 1992, starting as a small distribution business with a passion for delivering quality products to the community.
+  </div>
+</div>
+
+    <div class="space-y-4 max-w-1/3 hidden md:block">
+      <h3 class="text-xl font-bold">Quick Links</h3>
+      <ul class="space-y-2 text-[#E6F6FF] px-3 ">
+        <li><a href="/" class="hover:underline hover:text-[#0E6BA8]">Home</a></li>
+        <li><a href="/services" class="hover:underline hover:text-[#0E6BA8]">Products</a></li>
+        <li><a href="/discounts" class="hover:underline hover:text-[#0E6BA8]">Discounts</a></li>
+        <li><a href="/about" class="hover:underline hover:text-[#0E6BA8]">About Us</a></li>
+        <li><a href="/contact" class="hover:underline hover:text-[#0E6BA8]">Contact Us</a></li>
+      </ul>
+    </div>
+     <div class="border-b border-gray-300 py-2.5 md:hidden block">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">+</span>
+    <span class="text-xl sm:text-2xl md:text-3xl font-bold">Quick Links</span>
+  </button>
+  <div class="content my-2 px-8 text-black hidden">
+<ul class="space-y-2 text-[#E6F6FF]   ">
+        <li><a href="/" class="hover:underline hover:text-[#0E6BA8]">Home</a></li>
+        <li><a href="/services" class="hover:underline hover:text-[#0E6BA8]">Products</a></li>
+        <li><a href="/discounts" class="hover:underline hover:text-[#0E6BA8]">Discounts</a></li>
+        <li><a href="/about" class="hover:underline hover:text-[#0E6BA8]">About Us</a></li>
+        <li><a href="/contact" class="hover:underline hover:text-[#0E6BA8]">Contact Us</a></li>
+      </ul>  </div>
+</div>
+
+    <div class="space-y-4 max-w-1/3 hidden md:block">
+      <h3 class="text-xl font-bold">Contact Info</h3>
+      <ul class="space-y-2 text-[#E6F6FF] text-sm px-3 ">
+        <li><strong>Phone:</strong> <a href="tel:+923356599132" class="hover:underline">+92 335 6599132</a></li>
+        <li><strong>Email:</strong> <a href="mailto:ahmadhassanmufti@gmail.com" class="hover:underline">ahmadhassanmufti@gmail.com</a></li>
+        <li><strong>Address:</strong> Main Rajana Road,Muridwala. District Faisalabad</li>
+      </ul>
+      
+      <div class="pt-2 px-3">
+        <ul class="flex items-center  space-x-5">
+          <li>
+            <a href="https://www.facebook.com/profile.php?id=100064013284416" title="Visit our Facebook page">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/fb.png' %}" alt="Facebook">
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/+923356599132" title="Message us on WhatsApp">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/wp.png' %}" alt="WhatsApp">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/ahmd_h251/" title="Visit our Instagram page">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/im.png' %}" alt="Instagram">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@ahmad.gas.center" title="Visit our TikTok page">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/tk.png' %}" alt="TikTok">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+ <div class="border-b border-gray-300 py-2.5 md:hidden block">
+  <button
+    class="flex items-center w-full text-left focus:outline-none"
+    onclick="toggleContent(this)"
+  >
+    <span class="icon text-lg font-bold w-8 h-8 flex items-center justify-center bg-black text-white mr-2">+</span>
+    <span class="text-xl sm:text-2xl md:text-3xl font-bold">Contact Info</span>
+  </button>
+  <div class="content my-2 px-4 text-black hidden">
+<ul class="space-y-2 text-[#E6F6FF] text-sm ">
+        <li><strong>Phone:</strong> <a href="tel:+923356599132" class="hover:underline">+92 335 6599132</a></li>
+        <li><strong>Email:</strong> <a href="mailto:ahmadhassanmufti@gmail.com" class="hover:underline">ahmadhassanmufti@gmail.com</a></li>
+        <li><strong>Address:</strong> Main Rajana Road,Muridwala. District Faisalabad</li>
+      </ul>
+      
+      <div class="pt-2">
+        <ul class="flex items-center justify-center md:justify-normal space-x-5">
+          <li>
+            <a href="https://www.facebook.com/profile.php?id=100064013284416" title="Visit our Facebook page">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/fb.png' %}" alt="Facebook">
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/+923356599132" title="Message us on WhatsApp">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/wp.png' %}" alt="WhatsApp">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/ahmd_h251/" title="Visit our Instagram page">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/im.png' %}" alt="Instagram">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@ahmad.gas.center" title="Visit our TikTok page">
+              <img class="h-6 w-6 hover:scale-125 transition-transform ease-in-out duration-300" src="{% static 'image/tk.png' %}" alt="TikTok">
+            </a>
+          </li>
+        </ul>
+  </div>
+</div>
+  </div>
+  </div>
+   <div class="w-full max-w-screen-xl mx-auto p-1.5 sm:p-4 md:py-4">
+  
+            <span class=" flex justify-center text-sm sm:text-lg md:text-2xl  sm:my-6 text-white font-bold text-center">© 2025 Ahmad ElectroGas. All Rights Reserved.</span>
+            
+      <hr class="border-gray-500 opacity-50" />
+        <span class="flex justify-center text-sm sm:text-md text-white sm:text-center mt-3 dark:text-gray-400">Developed By:&nbsp;<a href="https://github.com/zanns19" target="_blank" class="nav-link1 font-bold text-[#FFFFFF] hover:text-[#0E6BA8]">ZUHAIR ANNS ANWAR</a></span>
     </div>
 </footer>
 
@@ -332,6 +474,27 @@
       }
     });
   });
+  function toggleContent(button) {
+  const icon = button.querySelector('.icon');
+  const content = button.parentElement.querySelector('.content');
+  const isHidden = content.classList.contains('hidden');
+
+  // Close all other open sections
+  const allContents = document.querySelectorAll('.content');
+  const allIcons = document.querySelectorAll('.icon');
+  allContents.forEach(c => c.classList.add('hidden'));
+  allIcons.forEach(i => i.textContent = '+');
+
+  if (isHidden) {
+    // Open this one
+    content.classList.remove('hidden');
+    icon.textContent = '-';
+  } else {
+    // Keep it closed
+    content.classList.add('hidden');
+    icon.textContent = '+';
+  }
+}
 </script>
 </body>
 </html>

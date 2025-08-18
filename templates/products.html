@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %} {{ item.product_name }} | Ahmad Gas
-Center {% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %} {{ item.product_name }} | Ahmad ElectroGas {% endblock %} {% block content %}
+<div class="md:max-w-[1270px] mx-auto px-1.5">
 <div class=" my-1.5 sm:my-4">
   <div
     class="flex gap-1 sm:gap-3 md:gap-6 flex-col md:flex-row md:justify-normal p-1.5 sm:p-4"
@@ -202,6 +202,7 @@ Center {% endblock %} {% block content %}
 
   </div>
 </div>
+</div>
 {% endblock %} {% block javascript %}
 <script>
   {% comment %} price logic {% endcomment %}
@@ -209,7 +210,7 @@ Center {% endblock %} {% block content %}
 function updateDisplay(itemId) {
   const div   = document.getElementById("divpr" + itemId);
   const price = parseFloat(div.dataset.price);
-  const qty   = cart[itemId] || 0;
+  const qty = cart[itemId] || 0;
   const total = (price * qty).toFixed(0);
 
   document.getElementById("val" + itemId).innerText = qty;
@@ -229,8 +230,12 @@ function updateDisplay(itemId) {
   // ====== Auto-render quantity controls for all items shown on the page ======
   document.querySelectorAll(".divpr").forEach(div => {
     const itemId = div.id.replace("divpr", "");
+    if (!(itemId in cart) || cart[itemId] < 1) {
+    cart[itemId] = 1;
+    localStorage.setItem('cart', JSON.stringify(cart)); 
+}
 
-    cart[itemId] = 1; // Default to 0
+
 
     const pr = document.getElementById("pr" + itemId);
     if (pr) {

@@ -1,22 +1,24 @@
 {% extends "index.html" %}
 {% load static %}
 
-{% block title %}About | Ahmad Gas Center{% endblock  %}
+{% block title %}About | Ahmad ElectroGas{% endblock  %}
 
 {% block content  %}
+<div class="md:max-w-[1270px] mx-auto px-1.5">
 <section class="container mx-auto px-2 py-2 sm:px-4 sm:py-4">
-  <div class="bg-gradient-to-r from-cyan-500 to-[#c6fa1e8a] py-7 px-2 sm:px-8 lg:px-12 rounded-lg shadow-xl text-center max-w-4xl mx-auto mt-10 mb-10">
+  <div class="bg-gradient-to-r from-cyan-500 to-[#c6fa1e8a] py-7 px-1 sm:px-8 lg:px-12 rounded-lg shadow-xl text-center max-w-4xl mx-auto mt-10 mb-10">
     <h1 class="text-3xl flex justify-center sm:text-4xl md:text-6xl font-extrabold ">
-      <span class="word-type-container1 gulzar-regular text-blue-900 p-2 pt-8 sm:p-6 sm:pt-10 md:pt-16">خُوش آمدید 
-  اَحمد الیکٹروگیس مریدوالا</span>
+      <span class="word-type-container1 gulzar-regular py-2 text-blue-900 pt-8 sm:p-6 sm:pt-10 md:pt-16">خُوش آمدید 
+  اَحمد الیکٹرو گیس مریدوالا</span>
     </h1>   
 </div>
 
           
-          <div class="bg-[#e2e2e2] p-5 sm:p-10   my-5">
-              <h1 class=" libertinus-sans-regular-italic text-3xl sm:text-[40px]">...Quality is never an accident; it is always the result of intelligent effort. </h1>
+          <div class="bg-[#e2e2e2] p-3 sm:p-10   my-5">
+              <h1 class= "gulzar-regular text-center text-lg sm:text-3xl sm:text-[40px]">تباہی ہے اُن لوگوں کے لیے جو ناپ تول میں کمی کرتے ہیں </h1>
               <div class="text-end mr-1 opacity-75 sm:mr-6 text-xl">
-                <h1 class="font-bold mt-3.5">"John Ruskin"</h1>
+                <h1 class="font-bold text-center gulzar-regular mt-5">
+(سورۃ المطففین 83:1)</h1>
               </div>
           </div>
 <div>
@@ -26,11 +28,29 @@
     <div class="flex flex-col md:flex-row items-center gap-12 my-4">
       <!-- IMAGE COLUMN -->
       <div class="md:w-1/2">
-        <img
+        <div class="relative group mx-auto rounded-2xl overflow-hidden">
+        <a href="{% static 'image/logo.jpg' %}">
+
+          <img
           src="{% static 'image/logo.jpg' %}"
-          alt="Ahmad Gas Center Facility"
+          alt="Ahmad ElectroGas Facility"
           class="reveal transform translate-y-70 opacity-0 transition-all duration-1400 ease-out rounded-lg shadow-lg"
-        />
+          />
+           <div class="absolute inset-0 bg-[#e20219] opacity-70 flex items-center justify-center
+                  translate-y-[-100%] group-hover:translate-y-0 
+                  transition-transform duration-300 ease-in-out">
+        <!-- Camera Icon -->
+         
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="2" stroke="currentColor"
+             class="w-12 h-12 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M3 7h3l2-3h8l2 3h3v13H3V7z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      </div>
+        </a>
+      </div>
       </div>
 
       <!-- TEXT COLUMN -->
@@ -39,12 +59,12 @@
           The Clear Choice!
         </h2>
         <p class="text-gray-700 leading-relaxed">
-          Ahmad Gas Center with its presence in the Pakistani Kitchens for more than three decades has
+          Ahmad ElectroGas with its presence in the Pakistani Kitchens for more than three decades has
           constantly endeavored to give homemakers the latest in technology and making cooking a
           luxurious and pleasurable experience. Our continuous pursuit of the true understanding of
           customer’s needs and necessities, have made us constantly innovative. Always exploring
           the possibility of new designs, technologies, features and innovations with great stress
-          on R &amp; D, Ahmad Gas Center has established its leadership in creating better products for
+          on R &amp; D, Ahmad ElectroGas has established its leadership in creating better products for
           its customers.
         </p>
         <p class="text-gray-700 leading-relaxed">
@@ -52,21 +72,22 @@
           and support for ultimate consumer satisfaction.
         </p>
         <p class="text-gray-700 leading-relaxed">
-          Ahmad Gas Center’s products promise more efficient working and hassle-free life. It is this promise,
-          and its utmost fulfilment, that has made Ahmad Gas Center a trusted and loved household brand in
+          Ahmad ElectroGas’s products promise more efficient working and hassle-free life. It is this promise,
+          and its utmost fulfilment, that has made Ahmad ElectroGas a trusted and loved household brand in
           the country making it clearly the clear choice for the aspiring customers.
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <ul class="list-disc list-inside space-y-2 text-gray-700">
-            <li>5 Company Showrooms</li>
+            <li>3 Company Showrooms</li>
             <li>1 Manufacturing &amp; Assembly Plants</li>
             <li>100+ Exhibitions in Various Areas</li>
           </ul>
           <ul class="list-disc list-inside space-y-2 text-gray-700">
             <li>Most Trusted Brand Nationwide</li>
-            <li>2 Warehouses in Various Cities</li>
-            <li>Head Office in Gujranwala, Punjab PAKISTAN</li>
+            <li>Head Office in Muridwala.
+
+District Faisalabad, Punjab PAKISTAN</li>
           </ul>
         </div>
       </div>
@@ -77,7 +98,7 @@
   <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8 p-3 sm:p-8 mt-3">
   <!-- Timeline -->
   <div class="flex-1 max-w-2xl">
-    <h1 class="text-3xl font-bold mb-6">HISTORY OF AHMAD GAS CENTER</h1>
+    <h1 class="text-3xl font-bold mb-6">HISTORY OF Ahmad ElectroGas</h1>
 
    <!-- 2006: OPEN by default -->
 <div class="border-b border-gray-300 py-4">
@@ -139,16 +160,33 @@ Ahmad ElectroGas embarked on its journey in 1992, starting as a small distributi
 
   <!-- Image -->
   <div class="flex-1 max-w-lg">
+    
+        <div class="relative group mx-auto rounded-2xl overflow-hidden">
+    <a href="{% static 'image/logo.jpg' %}">
     <img
       src="{% static 'image/logo.jpg' %}"
       alt="Worker"
       class="w-full h-auto rounded shadow reveal transform translate-y-70 opacity-0 transition-all duration-1400 ease-out "
-
     />
+     <div class="absolute inset-0 bg-[#e20219] opacity-70 flex items-center justify-center
+                  translate-y-[-100%] group-hover:translate-y-0 
+                  transition-transform duration-300 ease-in-out">
+        <!-- Camera Icon -->
+         
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="2" stroke="currentColor"
+             class="w-12 h-12 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M3 7h3l2-3h8l2 3h3v13H3V7z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      </div>
+    </a>
+  </div>
   </div>
 </div>
   </section>
-
+</div>
 {% endblock  %}
 
 {% block javascript %}

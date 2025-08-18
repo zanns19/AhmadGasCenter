@@ -1,39 +1,85 @@
 {% extends "base.html" %}
+{% load static  %}
+
 
 {% block content %}
-<div class="w-full rounded-xl p-2">
- <section class="mb-8">
-  <div class="bg-gradient-to-r from-[#bababa] to-[#0000003d] py-1.5 sm:py-4  md:py-16  px-1.5 sm:px-8 lg:px-12 rounded-lg shadow-xl text-center max-w-4xl mx-auto mt-10 mb-10">
-    <h1 class="text-lg sm:text-[40px] font-extrabold mb-0.5 sm:mb-4">
-        <span class="word-type-container text-blue-900 pt-1">Welcome to Ahmad Electrogas</span>
-    </h1>
-    <h1 id="delayedText" class="text-xs sm:text-3xl font-bold  mb-1 sm:mb-4 hidden">
-        <span class="word-type-container sm:pb-1 text-red-800">Our aim to provide quality products to your door step</span>
-    </h1>
-    <p class="text-md text-green-950  sm:text-xl leading-relaxed opacity-90">
-        Your reliable source for <span class="font-bold">quality gas cylinders</span> and <span class="font-bold">essential kitchen appliances</span> in Muridwala.
-    </p>
-    <p class="text-sm sm:text-lg mt-4 opacity-95 text-amber-700">
-        We ensure <span class="font-bold">competitive prices</span> and <span class="font-bold">top-notch service</span> for every customer.
-    </p>
+<div class="w-full relative"> <!-- ✅ added relative here -->
+  <!-- Carousel -->
+ <div id="default-carousel" class="relative max-w-lvw " data-carousel="slide">
+    <!-- Carousel wrapper -->
+    <div class="relative h-44 overflow-hidden sm:h-56 md:h-80 lg:h-96 xl:h-[700px]">
+      <!-- Item 1 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <img src="{% static 'image/crousel1.jpg' %}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+      <!-- Item 2 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <img src="{% static 'image/crousel2.jpg' %}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+      <!-- Item 3 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <img src="{% static 'image/crousel3.jpg' %}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+    </div>
+    <!-- Slider indicators -->
+    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+    </div>
+    <!-- Slider controls -->
+    <button type="button" class="absolute top-0 start-0 z-31 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="sr-only">Previous</span>
+        </span>
+    </button>
+    <button type="button" class="absolute top-0 end-0 z-31 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="sr-only">Next</span>
+        </span>
+    </button>
+</div>
+<div class="absolute top-[18%] sm:top[29%]  md:top-[26%] lg:top-[27%] xl:top-[17%] left-[47%]">
+<section class="absolute inset-0 flex flex-col items-center justify-center text-center z-20 px-4">
+    <div class="bg-[#F3F6FA]/80 py-1.5 sm:py-2.5 md:py-3.5 lg:py-10 p px-2 sm:px-8 lg:px-12 border-2 border-[#E6EEF6] rounded-lg shadow-xl max-w-4xl">
+      <h1 class="text-[15px] sm:text-2xl  md:text-[30px] lg:text-[34px] xl:text-[40px] font-extrabold sm:mb-2">
+        <span class="word-type-container text-[#0B2540]">Welcome to Ahmad <span class="text-[#00789a]">Electro</span>Gas</span>
+      </h1>
+      <h1 id="delayedText" class="text-[10px] sm:text[18px] md:text-[24px] lg:text-[27px] xl:text-3xl font-bold hidden">
+        <span class="word-type-container text-green-800">Our aim to provide quality products to your door step</span>
+      </h1>
+    </div>
+  </section>
+</div>
 </div>
 
-
+<div class="md:max-w-[1270px] mx-auto px-1.5">
 {% if discount %}
 <div>
-    <div class="flex items-center justify-center my-8 gap-2">
-        <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4 rounded"></div>
-        <h2 class="text-2xl sm:text-4xl md:text-5xl font-mono font-bold text-center text-purple-800 uppercase tracking-wide">
-            SPECIAL <span class="text-green-800">DISCOUNTS</span>
+  <div class="my-8 ">
+     <h2 class="bg-[#FFFFFF] border-2 border-[#F5F5F5] rounded-lg shadow-xl  max-w-fit mx-auto text-2xl sm:text-4xl md:text-5xl font-mono text-center font-bold p-2 sm:px-9 text-[#333333] uppercase tracking-wide">
+      <span class="blinking font-mono text-center font-bold text-[#333333] uppercase tracking-wide">FEATURED PRODUCTS</span>
+          
         </h2>
-        <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4 rounded"></div>
-    </div>
+    
+</div>
+  
+  
 
     <div class="mt-1 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {% for d in discount %}
         {% with i=d.item %}
-        <div class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700 {% if d.class %}{{ d.class }}{% endif %}">
-            <div class="h-80 overflow-hidden flex items-center justify-center my-4">
+        <div class="w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700 {% if d.class %}{{ d.class }}{% endif %}">
+          <div class="h-80 overflow-hidden flex items-center justify-center relative my-4">
+              <span class="bg-[#F3F6FA] rounded-full text-green-500 font-bold px-6 text-[20px] absolute top-0.5 right-[18px] "> {{i.dist}}% OFF</span>
                 <a href="/media/{{i.image}}" class="items-center">
                     <img class="w-full h-full object-cover p-4 hover:scale-125 transition-transform ease-in-out duration-300" src="/media/{{i.image}}" alt="product image"/>
                 </a>
@@ -44,7 +90,7 @@
                 <div class="sm:h-18 overflow-hidden mb-3">
                     <p class="text-md tracking-tight text-gray-900 dark:text-white line-clamp-3">
                         {{ i.desc|slice:":76" }}...
-                        <a href="{% url 'products' 'discount' i.id %}" class="text-blue-600 hover:underline"> See more</a>
+                        <a href="{% url 'products' 'discount' i.id %}" class="text-blue-600 hover:underline"> See details</a>
                     </p>
                 </div>
 
@@ -70,12 +116,12 @@
                 </div>
 
                 <div class="flex flex-row justify-between">
-                    <div class="relative">
+                    <div class="relative mt-3">
                         <span class="absolute -bottom-5 text-[23px] px-2 font-bold text-red-900 before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-full before:h-[2px] before:bg-current before:z-10">
                             Rs.{{i.orgprice}}
                         </span>
                     </div>
-                    <span class="text-green-600 font-bold px-6 text-[20px]"> {{i.dist}}% OFF</span>
+                    
                 </div>
 
                 <div class="flex items-center justify-between">
@@ -96,16 +142,20 @@
     </div>
 </div>
 
-<div class="flex items-center justify-center mx-auto my-2 text-center">
-    <p class="flex items-center text-sm sm:text-2xl font-normal text-gray-500 dark:text-gray-400">
+<div class="flex flex-col sm:flex-row items-center justify-center mx-auto my-2 text-center">
+    <p class="flex  items-center text-sm sm:text-2xl font-normal text-gray-500 dark:text-gray-400">
+      <div>
         <span class="inline-flex p-1 me-3 bg-gray-200 rounded-full dark:bg-gray-600 w-6 h-6 items-center justify-center">
             <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M18.435 7.546A2.32 2.32 0 0 1 17.7 5.77a3.354 3.354 0 0 0-3.47-3.47 2.322 2.322 0 0 1-1.776-.736 3.357 3.357 0 0 0-4.907 0 2.281 2.281 0 0 1-1.776.736 3.414 3.414 0 0 0-2.489.981 3.372 3.372 0 0 0-.982 2.49 2.319 2.319 0 0 1-.736 1.775 3.36 3.36 0 0 0 0 4.908A2.317 2.317 0 0 1 2.3 14.23a3.356 3.356 0 0 0 3.47 3.47 2.318 2.318 0 0 1 1.777.737 3.36 3.36 0 0 0 4.907 0 2.36 2.36 0 0 1 1.776-.737 3.356 3.356 0 0 0 3.469-3.47 2.319 2.319 0 0 1 .736-1.775 3.359 3.359 0 0 0 0-4.908ZM8.5 5.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm3 9.063a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm2.207-6.856-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 1.414Z"/>
             </svg>
         </span>
-        <span>Get Discount per product <a href="discounts/" class="flex items-center ms-0 text-sm sm:text-2xl font-medium text-green-600 md:ms-1 md:inline-flex dark:text-blue-500 hover:underline">View More Discount products <svg style="margin-top: 3px;" class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <span>Get Discount per product </span>
+        </div>
+        <div>
+        <span><a href="discounts/" class="flex items-center ms-0 text-xl sm:text-2xl font-medium text-green-600 md:ms-1 md:inline-flex dark:text-blue-500 hover:underline">&nbsp;View More Discount products <svg style="margin-top: 3px;" class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-        </svg></a></span>
+        </svg></a></span></div>
     </p>
 </div>
 {% endif %}
@@ -134,13 +184,13 @@
         </a>
       </div>
 
-      <div class="px-5 pb-5">
+      <div class="px-3 sm:px-5px-5 pb-5">
          <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
         <p class="text-xs sm:text-[16px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
           {{ i.desc|slice:":46" }}...
-          <a href="{% url 'products' 'kitchen' i.id %}" class="text-blue-600 hover:underline"> See more</a>
+          <a href="{% url 'products' 'kitchen' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
         
       
@@ -170,7 +220,7 @@
           </span>
         </div>
 
-        <div class="flex items-center gap-x-2.5 sm:justify-between">
+<div class="flex items-center gap-x-3 sm:justify-between">
           <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
@@ -178,7 +228,7 @@
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[6px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[8px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -186,7 +236,6 @@
    Shop Now
   </span> 
 </button>
-
 </div>
 {% if forloop.first %}
       <span class="inline-block bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs font-semibold mt-2">In Stock</span>
@@ -226,13 +275,13 @@
         </a>
       </div>
 
-      <div class="px-5 pb-5">
+      <div class="px-3 sm:px-5 pb-5">
          <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
         <p class="text-xs sm:text-[16px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
           {{ i.desc|slice:":46" }}...
-          <a href="{% url 'products' 'product' i.id %}" class="text-blue-600 hover:underline"> See more</a>
+          <a href="{% url 'products' 'product' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
         
       
@@ -261,8 +310,7 @@
             {{ i.rating }}
           </span>
         </div>
-
-        <div class="flex items-center gap-x-2.5 sm:justify-between">
+<div class="flex items-center gap-x-3 sm:justify-between">
           <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
@@ -270,7 +318,7 @@
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[6px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[8px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -298,20 +346,24 @@
 
 </div>
     <div class="text-center mt-12">
-        <a href="/services" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full">
+        <a href="/services" class="bg-[#FF8A00] hover:bg-[#E07400] text-white font-bold py-3 px-6 rounded-full">
             View All Products
         </a>
     </div>
- </section>
 
-<iframe
-  class="responsive-iframe rounded-xl"
-  src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1269131610914058%2F&show_text=false&width=560&t=0"
-  scrolling="no"
-  frameborder="0"
-  allowfullscreen="true"
-  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-</iframe>
+
+    
+    
+    <iframe
+    class="responsive-iframe rounded-xl mt-5 mb-3"
+    src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1269131610914058%2F&show_text=false&width=560&t=0"
+    scrolling="no"
+    frameborder="0"
+    allowfullscreen="true"
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 {% endblock %}
 
 

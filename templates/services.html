@@ -2,8 +2,8 @@
 {% block title %}Products | Ahmad ElectroGas {% endblock  %}
 {% block content %}
 
-<div class="md:max-w-[1270px] mx-auto px-1.5">
-<div class="p-1">
+<div class="md:max-w-[1480px] mx-auto px-1.5">
+<div class="">
 <div
   class="mx-auto max-w-3xl px-2 py-6 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 font-sans"
 >
@@ -94,34 +94,34 @@
 {% if kitchen and category != 'gas' %}
 <div class="flex items-center justify-center  my-6">
   <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
-  <h2 class="text-xl sm:text-4xl font-bold text-green-600 px-4 uppercase tracking-wide">Kitchen Appliances</h2>
+  <h2 class="text-xl sm:2xl lg:text-4xl font-bold text-green-600 px-4 uppercase tracking-wide">Kitchen Appliances</h2>
   <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
 </div>
 
-    <div class="mt-1 grid grid-cols-2 gap-x-1 sm:gap-x-6 gap-y-6 sm:gap-y-10 sm:grid-cols-4 xl:gap-x-8">
+   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-1 gap-y-6 sm:gap-y-10  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  xl:gap-x-4">
    
   {% for i in kitchen  %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12 w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center rounded-t-xl"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="product image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+      <div class="px-1.5 sm:px-3.5 pb-5">
+         <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
-        <p class="text-xs sm:text-[17px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
+        <p class="text-xs pl-1 lg:text-[14px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
           {{ i.desc|slice:":59" }}...
           <a href="{% url 'products' 'kitchen' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
@@ -154,14 +154,14 @@
         </div>
 
         <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-lg sm:text-[20px] md:text-[22px] lg:text-[24px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[9px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -173,7 +173,12 @@
    </div>
       </div>
     </div>
-   
+   <div class="absolute -bottom-6 left-3 w-full  transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'kitchen' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
     {% endfor %}
   </div>
   
@@ -190,7 +195,7 @@
 </svg> Prev</a>
 {% endif %}
 
-<span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+<span class="px-2 sm:px-4 py-2 bg-gray-200 text-gray-700 rounded">
   Page {{ kitchen.number }} of {{ kitchen.paginator.num_pages }}
 </span>
 
@@ -205,37 +210,37 @@ margin-top: 2.5px;
 {% endif %}
 </div>
 {% if product and category != 'kitchen' %}
-<div class="flex items-center justify-center my-6">
+<div class="flex items-center justify-center my-6 ">
   <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
   <h2 class="text-2xl sm:text-4xl font-bold text-red-800 px-4 uppercase tracking-wide">CAMPING STOVES</h2>
   <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
 </div>
 
-   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-6 gap-y-8 sm:gap-y-10 sm:grid-cols-4 xl:gap-x-8">
+   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-1 gap-y-6 sm:gap-y-10  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  xl:gap-x-4">
    
   {% for i in product %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h-52 sm:h-80 overflow-hidden flex items-center justify-center rounded-t-xl"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="product image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+      <div class="px-1.5 sm:px-3.5 pb-5">
+         <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
-        <p class="text-xs sm:text-[17px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
-          {{ i.desc|slice:":56" }}...
+        <p class="text-xs pl-1 lg:text-[14px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
+          {{ i.desc|slice:":65" }}...
           <a href="{% url 'products' 'product' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
         
@@ -267,14 +272,14 @@ margin-top: 2.5px;
         </div>
 
         <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-lg sm:text-[20px] md:text-[22px] lg:text-[24px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[9px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -286,6 +291,12 @@ margin-top: 2.5px;
              </div>
       </div>
     </div>
+    <div class="absolute -bottom-6 left-3 w-full  transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'product' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
     {% endfor %}
   </div>
   
@@ -299,7 +310,7 @@ margin-top: 2.5px;
         </svg> Prev</a>
   {% endif %}
 
-  <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+  <span class="px-2 sm:px-4 py-2 bg-gray-200 text-gray-700 rounded">
     Page {{ product.number }} of {{ product.paginator.num_pages }}
   </span>
 
@@ -318,36 +329,36 @@ margin-top: 2.5px;
 {% comment %} Gyser {% endcomment %}
 {% if gyser and category != 'gas' and category != 'kitchen'  %}
 <div class="flex items-center justify-center my-6">
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-[14%] sm:w-1/4"></div>
   <h2 class="text-2xl sm:text-4xl font-bold text-green-600 px-4 uppercase tracking-wide">Instant Gyser</h2>
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-[14%] sm:w-1/4"></div>
 </div>
 
-   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-6 gap-y-8 sm:gap-y-10 sm:grid-cols-4 xl:gap-x-8">
+   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-1 gap-y-6 sm:gap-y-10  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  xl:gap-x-4">
    
   {% for i in gyser %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center rounded-t-xl"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="gyser image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+      <div class="px-1.5 sm:px-3.5 pb-5">
+         <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
-        <p class="text-xs sm:text-[17px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
-          {{ i.desc|slice:":56" }}...
+        <p class="text-xs pl-1 lg:text-[14px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
+          {{ i.desc|slice:":65" }}...
           <a href="{% url 'products' 'gyser' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
         
@@ -379,14 +390,14 @@ margin-top: 2.5px;
         </div>
 
         <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-lg sm:text-[20px] md:text-[22px] lg:text-[24px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[9px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -398,6 +409,12 @@ margin-top: 2.5px;
              </div>
       </div>
     </div>
+    <div class="absolute -bottom-6 left-3 w-full  transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'gyser' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
     {% endfor %}
   </div>
   
@@ -411,7 +428,7 @@ margin-top: 2.5px;
         </svg> Prev</a>
   {% endif %}
 
-  <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+  <span class="px-2 sm:px-4 py-2 bg-gray-200 text-gray-700 rounded">
     Page {{ gyser.number }} of {{gyser.paginator.num_pages }}
   </span>
 
@@ -430,36 +447,36 @@ margin-top: 2.5px;
 {% comment %} Regulator {% endcomment %}
 {% if regulator and category != 'gas' and category != 'kitchen'  %}
 <div class="flex items-center justify-center my-6">
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-1/4 sm:w-[65%]"></div>
   <h2 class="text-2xl sm:text-4xl font-bold text-red-800 px-4 uppercase tracking-wide">Regulator</h2>
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-1/4 sm:w-[65%]"></div>
 </div>
 
-   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-6 gap-y-8 sm:gap-y-10 sm:grid-cols-4 xl:gap-x-8">
+   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-1 gap-y-6 sm:gap-y-10  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  xl:gap-x-4">
    
   {% for i in regulator %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center rounded-t-xl"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="regulator image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+      <div class="px-1.5 sm:px-3.5 pb-5">
+         <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
-        <p class="text-xs sm:text-[17px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
-          {{ i.desc|slice:":56" }}...
+        <p class="text-xs pl-1 lg:text-[14px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
+          {{ i.desc|slice:":65" }}...
           <a href="{% url 'products' 'regulator' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
         
@@ -491,14 +508,14 @@ margin-top: 2.5px;
         </div>
 
         <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-lg sm:text-[20px] md:text-[22px] lg:text-[24px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[9px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -510,6 +527,12 @@ margin-top: 2.5px;
              </div>
       </div>
     </div>
+    <div class="absolute -bottom-6 left-3 w-full  transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'regulator' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
     {% endfor %}
   </div>
   
@@ -523,7 +546,7 @@ margin-top: 2.5px;
         </svg> Prev</a>
   {% endif %}
 
-  <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+  <span class="px-2 sm:px-4 py-2 bg-gray-200 text-gray-700 rounded">
     Page {{ regulator.number }} of {{regulator.paginator.num_pages }}
   </span>
 
@@ -540,36 +563,36 @@ margin-top: 2.5px;
 {% comment %} Valves {% endcomment %}
 {% if valves and category != 'gas' and category != 'kitchen'  %}
 <div class="flex items-center justify-center my-6">
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-1/4 sm:w-[65%]"></div>
   <h2 class="text-2xl sm:text-4xl font-bold text-green-600 px-4 uppercase tracking-wide">Valves</h2>
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-1/4 sm:w-[65%]"></div>
 </div>
 
-   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-6 gap-y-8 sm:gap-y-10 sm:grid-cols-4 xl:gap-x-8">
+   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-1 gap-y-6 sm:gap-y-10  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  xl:gap-x-4">
    
   {% for i in valves %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center rounded-t-xl"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="valves image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+      <div class="px-1.5 sm:px-3.5 pb-5">
+         <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
-        <p class="text-xs sm:text-[17px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
-          {{ i.desc|slice:":56" }}...
+        <p class="text-xs pl-1 lg:text-[14px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
+          {{ i.desc|slice:":65" }}...
           <a href="{% url 'products' 'valves' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
         
@@ -601,14 +624,14 @@ margin-top: 2.5px;
         </div>
 
         <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-lg sm:text-[20px] md:text-[22px] lg:text-[24px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[9px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -620,6 +643,12 @@ margin-top: 2.5px;
              </div>
       </div>
     </div>
+    <div class="absolute -bottom-6 left-3 w-full  transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'valves' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
     {% endfor %}
   </div>
   
@@ -633,7 +662,7 @@ margin-top: 2.5px;
         </svg> Prev</a>
   {% endif %}
 
-  <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+  <span class="px-2 sm:px-4 py-2 bg-gray-200 text-gray-700 rounded">
     Page {{ valves.number }} of {{valves.paginator.num_pages }}
   </span>
 
@@ -650,36 +679,36 @@ margin-top: 2.5px;
 {% comment %} Accessories {% endcomment %}
 {% if accessories and category != 'gas' and category != 'kitchen'  %}
 <div class="flex items-center justify-center my-6">
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-1/4 sm:w-[65%]"></div>
   <h2 class="text-2xl sm:text-4xl font-bold text-red-800 px-4 uppercase tracking-wide">Accessories</h2>
-  <div class="h-1 bg-[#1f49cb] w-1/12 sm:w-1/4"></div>
+  <div class="h-1 bg-[#1f49cb] w-1/4 sm:w-[65%]"></div>
 </div>
 
-   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-6 gap-y-8 sm:gap-y-10 sm:grid-cols-4 xl:gap-x-8">
+   <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-1 gap-y-6 sm:gap-y-10  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  xl:gap-x-4">
    
   {% for i in accessories %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center rounded-t-xl"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="accessories image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+      <div class="px-1.5 sm:px-3.5 pb-5">
+         <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
-        <p class="text-xs sm:text-[17px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
-          {{ i.desc|slice:":56" }}...
+        <p class="text-xs pl-1 lg:text-[14px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
+          {{ i.desc|slice:":65" }}...
           <a href="{% url 'products' 'accessories' i.id %}" class="text-blue-600 hover:underline"> See details</a>
         </p>
         
@@ -711,14 +740,14 @@ margin-top: 2.5px;
         </div>
 
         <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-lg sm:text-[20px] md:text-[22px] lg:text-[24px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[9px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
@@ -730,10 +759,16 @@ margin-top: 2.5px;
              </div>
       </div>
     </div>
+    <div class="absolute -bottom-6 left-3 w-full  transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'accessories' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
     {% endfor %}
   </div>
   
-  <div class="flex justify-center gap-4 mt-4">
+  <div class="flex justify-center gap-4 mt-4 mb-3">
     {% if accessories.has_previous %}
     <a href="?accessories_page={{ accessories.previous_page_number }}&kitchen_page={{ kitchen.number }}&gas_page={{ product.number }}&gyser_page={{ gyser.number }}&valves_page={{ valves.number }}&regulator_page={{ regulator.number }}"
     class="px-4 py-2 flex items-center  bg-gray-700 text-white rounded hover:bg-gray-800"><svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" style="
@@ -743,7 +778,7 @@ margin-top: 2.5px;
         </svg> Prev</a>
   {% endif %}
 
-  <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+  <span class="px-2 sm:px-4 py-2 bg-gray-200 text-gray-700 rounded">
     Page {{ accessories.number }} of {{accessories.paginator.num_pages }}
   </span>
 

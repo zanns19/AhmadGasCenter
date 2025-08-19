@@ -1,5 +1,5 @@
 from django.shortcuts import render ,HttpResponse
-from .models import Product , Kitchen_Items , Contact , Discount,KitchenCategory,Instant_Gyser,Regulator,Valves,Accessories
+from .models import Product , Kitchen_Items , Contact , Discount,KitchenCategory,Instant_Gyser,Regulator,Valves,Accessories,Offermsg
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -11,6 +11,7 @@ def index(request):
     products = Product.objects.all()
     kitchens = Kitchen_Items.objects.all()
     discounts = Discount.objects.all()
+    Offermsge = Offermsg.objects.all()
 
     selected_discounts = []
     total = discounts.count()
@@ -27,6 +28,7 @@ def index(request):
     params = {
         'product': products,
         'kitchen': kitchens,
+        'offermsg': Offermsge,
         'discount': selected_discounts
     }
     return render(request, 'index.html', params)
@@ -46,35 +48,35 @@ def services(request):
     # params={'product':Product_dataFinal,'kitchen':kitchens}
 # Gas Products Pagination
     gas_products = Product.objects.all()
-    gas_paginator = Paginator(gas_products, 12)  # Show 12 gas products per page
+    gas_paginator = Paginator(gas_products, 15)  # Show 15 gas products per page
     gas_page_number = request.GET.get('gas_page')
     gas_page_obj = gas_paginator.get_page(gas_page_number)
 
     # Kitchen Items Pagination
     kitchen_items = Kitchen_Items.objects.all()
-    kitchen_paginator = Paginator(kitchen_items, 12)  # Show 12 kitchen items per page
+    kitchen_paginator = Paginator(kitchen_items, 15)  # Show 15 kitchen items per page
     kitchen_page_number = request.GET.get('kitchen_page')
     kitchen_page_obj = kitchen_paginator.get_page(kitchen_page_number)
     categories = KitchenCategory.objects.prefetch_related('kitchen_items').all()
     
     # Gyser Items Pagination
     gyser_products = Instant_Gyser.objects.all()
-    gyser_paginator = Paginator(gyser_products, 12)  # Show 12 gas products per page
+    gyser_paginator = Paginator(gyser_products, 15)  # Show 15 gas products per page
     gyser_page_number = request.GET.get('gyser_page')
     gyser_page_obj = gyser_paginator.get_page(gyser_page_number)
     # Gyser Items Pagination
     regulator_products = Regulator.objects.all()
-    regulator_paginator = Paginator(regulator_products, 12)  # Show 12 gas products per page
+    regulator_paginator = Paginator(regulator_products, 15)  # Show 15 gas products per page
     regulator_page_number = request.GET.get('regulator_page')
     regulator_page_obj = regulator_paginator.get_page(regulator_page_number)
     # Gyser Items Pagination
     valves_products = Valves.objects.all()
-    valves_paginator = Paginator(valves_products, 12)  # Show 12 gas products per page
+    valves_paginator = Paginator(valves_products, 15)  # Show 15 gas products per page
     valves_page_number = request.GET.get('valves_page')
     valves_page_obj = valves_paginator.get_page(valves_page_number)
     # Gyser Items Pagination
     accessories_products = Accessories.objects.all()
-    accessories_paginator = Paginator(accessories_products, 12)  # Show 12 gas products per page
+    accessories_paginator = Paginator(accessories_products, 15)  # Show 15 gas products per page
     accessories_page_number = request.GET.get('accessories_page')
     accessories_page_obj = accessories_paginator.get_page(accessories_page_number)
 

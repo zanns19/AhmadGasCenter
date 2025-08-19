@@ -7,7 +7,7 @@
   <!-- Carousel -->
  <div id="default-carousel" class="relative max-w-lvw " data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div class="relative h-44 overflow-hidden sm:h-56 md:h-80 lg:h-96 xl:h-[700px]">
+    <div class="relative h-44 overflow-hidden sm:h-56 md:h-80 lg:h-96 xl:h-[720px]">
       <!-- Item 1 -->
       <div class="hidden duration-700 ease-in-out" data-carousel-item>
         <img src="{% static 'image/crousel1.jpg' %}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
@@ -61,35 +61,42 @@
 </div>
 </div>
 
-<div class="md:max-w-[1270px] mx-auto px-1.5">
+<div class="md:max-w-[1480px] mx-auto px-1.5">
 {% if discount %}
 <div>
-  <div class="my-8 ">
+  <div class="my-8 sm:my-16 ">
      <h2 class="bg-[#FFFFFF] border-2 border-[#F5F5F5] rounded-lg shadow-xl  max-w-fit mx-auto text-2xl sm:text-4xl md:text-5xl font-mono text-center font-bold p-2 sm:px-9 text-[#333333] uppercase tracking-wide">
-      <span class="blinking font-mono text-center font-bold text-[#333333] uppercase tracking-wide">FEATURED PRODUCTS</span>
+      {% if offermsg %}
+    
+      <span class="blinking font-mono text-center font-bold text-[#333333] uppercase  tracking-wide">{{ offermsg.0.name }}</span>
+      {% endif %}
           
         </h2>
     
 </div>
   
   
-
-    <div class="mt-1 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        {% for d in discount %}
-        {% with i=d.item %}
-        <div class="w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700 {% if d.class %}{{ d.class }}{% endif %}">
-          <div class="h-80 overflow-hidden flex items-center justify-center relative my-4">
-              <span class="bg-[#F3F6FA] rounded-full text-green-500 font-bold px-6 text-[20px] absolute top-0.5 right-[18px] "> {{i.dist}}% OFF</span>
+    <div class="mt-1 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-14">
+      {% for d in discount %}
+      {% with i=d.item %}
+      <div class="relative group overflow-hidden rounded-xl">
+        <div class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl dark:bg-gray-800 dark:border-gray-700 {% if d.class %}{{ d.class }}{% endif %}">
+          <div class="h-80 overflow-hidden flex items-center rounded-t-xl justify-center relative mb-2">
+              <span class="bg-green-200 text-green-700 rounded-full font-bold px-2 text-sm absolute top-2 right-[10px] "> {{i.dist}}% OFF</span>
+              
                 <a href="/media/{{i.image}}" class="items-center">
-                    <img class="w-full h-full object-cover p-4 hover:scale-125 transition-transform ease-in-out duration-300" src="/media/{{i.image}}" alt="product image"/>
+                    <img class="w-full h-full object-cover " src="/media/{{i.image}}" alt="product image"/>
                 </a>
             </div>
 
-            <div class="px-5 pb-5">
-                <h2 class="font-bold text-xl">{{i.product_name}}</h2>
-                <div class="sm:h-18 overflow-hidden mb-3">
-                    <p class="text-md tracking-tight text-gray-900 dark:text-white line-clamp-3">
-                        {{ i.desc|slice:":76" }}...
+           <div class="px-1.5 sm:px-3.5 pb-5">
+              <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
+          <div class="h-14 sm:h-18 overflow-hidden mb-3">
+    
+                    <p class="text-xs sm:text-[10px] lg:text-[14px] xl:text-[19px]tracking-tight text-gray-900 dark:text-white line-clamp-3" style="
+    padding-left: 4px;
+">
+                        {{ i.desc|slice:":92" }}...
                         <a href="{% url 'products' 'discount' i.id %}" class="text-blue-600 hover:underline"> See details</a>
                     </p>
                 </div>
@@ -132,19 +139,27 @@
                         </span>
                     </button>
                 </div>
-                <span class="inline-block bg-{% if d.label == 'In Stock' %}green-200 text-green-700{% else %}blue-200 text-blue-700{% endif %} rounded-full px-2 py-1 text-xs font-semibold mt-2">
+                <span class="inline-block bg-{% if d.label == 'In Stock' %}green-200 text-green-700{% else %}blue-200 text-blue-700{% endif %} rounded-full px-2 py-1 text-xs sm:text-sm font-semibold mt-2">
                     {{ d.label }}
                 </span>
             </div>
         </div>
+      
+<div class="absolute bottom-0 left-3 w-full p-4 transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'discount' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
         {% endwith %}
         {% endfor %}
+
     </div>
 </div>
 
-<div class="flex flex-col sm:flex-row items-center justify-center mx-auto my-2 text-center">
+<div class="flex flex-col sm:flex-row items-center justify-center mx-auto my-2 md:my-7 text-center">
     <p class="flex  items-center text-sm sm:text-2xl font-normal text-gray-500 dark:text-gray-400">
-      <div>
+      <div class="">
         <span class="inline-flex p-1 me-3 bg-gray-200 rounded-full dark:bg-gray-600 w-6 h-6 items-center justify-center">
             <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M18.435 7.546A2.32 2.32 0 0 1 17.7 5.77a3.354 3.354 0 0 0-3.47-3.47 2.322 2.322 0 0 1-1.776-.736 3.357 3.357 0 0 0-4.907 0 2.281 2.281 0 0 1-1.776.736 3.414 3.414 0 0 0-2.489.981 3.372 3.372 0 0 0-.982 2.49 2.319 2.319 0 0 1-.736 1.775 3.36 3.36 0 0 0 0 4.908A2.317 2.317 0 0 1 2.3 14.23a3.356 3.356 0 0 0 3.47 3.47 2.318 2.318 0 0 1 1.777.737 3.36 3.36 0 0 0 4.907 0 2.36 2.36 0 0 1 1.776-.737 3.356 3.356 0 0 0 3.469-3.47 2.319 2.319 0 0 1 .736-1.775 3.359 3.359 0 0 0 0-4.908ZM8.5 5.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm3 9.063a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm2.207-6.856-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 1.414Z"/>
@@ -153,7 +168,7 @@
         <span>Get Discount per product </span>
         </div>
         <div>
-        <span><a href="discounts/" class="flex items-center ms-0 text-xl sm:text-2xl font-medium text-green-600 md:ms-1 md:inline-flex dark:text-blue-500 hover:underline">&nbsp;View More Discount products <svg style="margin-top: 3px;" class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <span><a href="discounts/" class="flex items-center ms-0 text-xl sm:text-2xl font-medium text-green-600 md:ms-1 md:inline-flex dark:text-blue-500 hover:font-semibold hover:underline">&nbsp;View More Discount products <svg style="margin-top: 3px;" class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
         </svg></a></span></div>
     </p>
@@ -164,34 +179,40 @@
  <div class="w-full lg:w-1/2">
 <h2 class="font-bold py-2 text-3xl sm:text-4xl text-cyan-600 mb-4 text-center uppercase tracking-wide border-b-8 border-text-cyan-400">Kitchen Appliances
 </h2>
-  <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-6 gap-y-8 sm:gap-y-10 sm:grid-cols-2 xl:gap-x-8">
-   
+  <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-2 gap-y-8 sm:gap-y-10 sm:grid-cols-2 xl:gap-x-14">
+ 
   {% for i in kitchen %}
   {% if forloop.first or forloop.last %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl  dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h-55 sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h-55 sm:h-80 overflow-hidden flex items-center justify-centerd-t-xl my-0.5"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="product image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+       <div class="px-1.5 sm:px-3.5 pb-5">
+              <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
     
-        <p class="text-xs sm:text-[16px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
-          {{ i.desc|slice:":46" }}...
-          <a href="{% url 'products' 'kitchen' i.id %}" class="text-blue-600 hover:underline"> See details</a>
-        </p>
+       <p class="text-xs sm:text-[10px] lg:text-[13px]   xl:text-[14px] tracking-tight text-gray-900 dark:text-white" style="
+    padding-left: 2px;
+">
+  <span class="desc-text"
+        data-desc="{{ i.desc|escapejs }}">
+    <!-- JS will populate this -->
+  </span>
+  <a href="{% url 'products' 'kitchen' i.id %}" class="text-blue-600 hover:underline"> See details</a>
+</p>
+
         
       
     </div>
@@ -221,68 +242,81 @@
         </div>
 
 <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-[15px] sm:text-[16px] lg:text-xl xl:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[8px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
-  <span class="relative p-1 sm:px-5 sm:py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-sm group-hover:bg-transparent group-hover:dark:bg-transparent">
+  <span class="relative p-1 sm:px-1.5 xl:px-5 sm:py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-sm group-hover:bg-transparent group-hover:dark:bg-transparent">
    Shop Now
   </span> 
 </button>
 </div>
+
 {% if forloop.first %}
-      <span class="inline-block bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs font-semibold mt-2">In Stock</span>
+      <span class="inline-block bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs sm:text-sm font-semibold mt-2">In Stock</span>
     {% elif forloop.last %}
-       <span class="inline-block bg-blue-200 text-blue-700 rounded-full px-2 py-1 text-xs font-semibold mt-2">New</span>
+       <span class="inline-block bg-blue-200 text-blue-700 rounded-full px-2 py-1 text-xs sm:text-sm font-semibold mt-2">New</span>
     {% endif %}
       </div>
     </div>
+      <div class="absolute bottom-0 left-3 w-full p-4 transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'kitchen' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
      {% endif %}
     {% endfor %}
   </div>
 </div>
     {% endif %}
-        {# Add more product cards here #}
+    
         
 {% if product %}
 <div class="w-full lg:w-1/2">
 <h2 class="font-bold py-2 text-3xl sm:text-4xl text-cyan-600 mb-4 text-center uppercase tracking-wide border-b-8 border-text-cyan-400">CAMPING STOVES
 </h2>
-  <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-6 gap-y-8 sm:gap-y-10 sm:grid-cols-2 xl:gap-x-8">
+  <div class="mt-1 grid grid-cols-2 gap-x-2 sm:gap-x-2 gap-y-8 sm:gap-y-10 sm:grid-cols-2 xl:gap-x-14">
    
   {% for i in product %}
   {% if forloop.first or forloop.last %}
-  
+  <div class="relative group overflow-hidden rounded-xl">
   <div
-  class="w-full bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  class=" transition-transform duration-500 ease-in-out group-hover:-translate-y-12  w-full bg-white border  border-gray-200 rounded-xl shadow-xl  dark:bg-gray-800 dark:border-gray-700"
   >
       <div
-        class="h- sm:h-80 overflow-hidden flex items-center justify-center my-0.5 sm:my-4"
+        class="h- sm:h-80 overflow-hidden flex items-center justify-center rounded-t-xl"
       >
         <a href="/media/{{i.image}}" class="items-center">
           <img
-            class="w-full h-full object-cover p-1 sm:p-4 hover:scale-125 transition-transform ease-in-out duration-300"
+            class="w-full h-full object-cover "
             src="/media/{{i.image}}"
             alt="product image"
           />
         </a>
       </div>
 
-      <div class="px-3 sm:px-5 pb-5">
-         <h2 class="font-bold text-sm mb-1 sm:text-xl">{{i.product_name}}</h2>
+    <div class="px-1.5 sm:px-3.5 pb-5">
+              <h2 class="font-bold text-sm mt-1 mb-1 sm:text-xl">{{i.product_name}}</h2>
           <div class="h-14 sm:h-18 overflow-hidden mb-3">
-    
-        <p class="text-xs sm:text-[16px] tracking-tight text-gray-900 dark:text-white line-clamp-3">
-          {{ i.desc|slice:":46" }}...
-          <a href="{% url 'products' 'product' i.id %}" class="text-blue-600 hover:underline"> See details</a>
-        </p>
+      
+      <p class="text-xs sm:text-[10px] lg:text-[13px] xl:text-[14px] tracking-tight text-gray-900 dark:text-white" style="
+    padding-left: 2px;
+">
+  <span class="desc-text"
+        data-desc="{{ i.desc|escapejs }}">
+    <!-- JS will populate this -->
+  </span>
+  <a href="{% url 'products' 'product' i.id %}" class="text-blue-600 hover:underline"> See details</a>
+</p>
+
         
       
     </div>
@@ -311,36 +345,43 @@
           </span>
         </div>
 <div class="flex items-center gap-x-3 sm:justify-between">
-          <span class="text-lg sm:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
+          <span class="text-[15px] sm:text-[16px] lg:text-xl xl:text-[27px] items-center font-bold {% if i.price > 2500 %} text-red-900 {%else%} text-green-900 {%endif%} "
             >Rs.{{i.price}}</span
           >
           {% comment %} <button         
             id="{{i.product_id}}" class="cart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >Shop</button
           > {% endcomment %}
-         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-2 me-0.5 sm:me-2 overflow-hidden text-[8px] sm:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+         <button type="button" class="whatsapp-btn cursor-pointer mt-0.5 sm:mt-1 lg:mt-2 relative inline-flex items-center justify-center p-0.5 mb-0.5 sm:mb-1 lg:mb-2 me-0.5 sm:me-1 lg:me-2 overflow-hidden text-[9px] sm:text-[10px] lg:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
               data-product="{{ i.product_name }}"
   data-price="{{ i.price }}"
   >
-  <span class="relative p-1 sm:px-5 sm:py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-sm group-hover:bg-transparent group-hover:dark:bg-transparent">
+  <span class="relative p-1 sm:px-1.5pxl:x-5 sm:py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-sm group-hover:bg-transparent group-hover:dark:bg-transparent">
    Shop Now
   </span> 
 </button>
 
 </div>
+
 {% if forloop.first %}
-      <span class="inline-block bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs font-semibold mt-2">In Stock</span>
+      <span class="inline-block bg-green-200 text-green-700 rounded-full px-2 py-1 text-xs sm:text-sm font-semibold mt-2">In Stock</span>
     {% elif forloop.last %}
-       <span class="inline-block bg-blue-200 text-blue-700 rounded-full px-2 py-1 text-xs font-semibold mt-2">New</span>
+       <span class="inline-block bg-blue-200 text-blue-700 rounded-full px-2 py-1 text-xs sm:text-sm font-semibold mt-2">New</span>
     {% endif %}
       </div>
     </div>
+    <div class="absolute bottom-0 left-3 w-full p-4 transition-all duration-500 ease-in-out transform translate-y-full opacity-0 group-hover:-translate-y-[42px] group-hover:opacity-100 ">
+    <a href="{% url 'products' 'product' i.id %}" class="block text-center py-3 px-5 font-semibold  rounded-lg shadow-md mx-auto w-fit  bg-transparent border-2 border-gray-800 text-gray-800  hover:bg-gray-800 hover:text-white transition-colors duration-300 dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+        Show Details
+    </a>
+</div>
+</div>
+
      {% endif %}
     {% endfor %}
   </div>
 </div>
 {% endif %}
-
 
 
 
@@ -351,17 +392,18 @@
         </a>
     </div>
 
-
-    
+<div class="md:max-w-[1280px] mx-auto">
     
     <iframe
     class="responsive-iframe rounded-xl mt-5 mb-3"
     src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1269131610914058%2F&show_text=false&width=560&t=0"
     scrolling="no"
     frameborder="0"
-    allowfullscreen="true"
+    allowfullscreen="false"
     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
   </iframe>
+  </div>
+    
 </div>
 
 {% endblock %}
@@ -374,6 +416,61 @@
     document.getElementById("delayedText").classList.remove("hidden");
   }, 3250); // 5000 milliseconds = 5 seconds
   {% comment %} typing {% endcomment %}
+
+(function(){
+  // picks limits: mobile <640 -> 50, >=640 -> 92
+  const MOBILE_LIMIT = 50;
+  const DESKTOP_LIMIT = 92;
+  const mq = window.matchMedia('(min-width: 640px)');
+
+  function getLimit() {
+    return mq.matches ? DESKTOP_LIMIT : MOBILE_LIMIT;
+  }
+
+  function truncateText(text, limit) {
+    if (!text) return '';
+    if (text.length <= limit) return text;
+    // trim safely at last space to avoid cutting in middle of word (optional)
+    let substr = text.slice(0, limit);
+    const lastSpace = substr.lastIndexOf(' ');
+    if (lastSpace > Math.floor(limit * 0.6)) { // if reasonable space found
+      substr = substr.slice(0, lastSpace);
+    }
+    return substr + '...';
+  }
+
+  function applyTruncation() {
+    const limit = getLimit();
+    document.querySelectorAll('.desc-text').forEach(el => {
+      const full = el.dataset.desc || '';
+      // set using textContent to avoid XSS
+      el.textContent = truncateText(full.trim(), limit);
+    });
+  }
+
+  // debounce helper
+  function debounce(fn, wait) {
+    let t;
+    return function(...args) {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, args), wait);
+    };
+  }
+
+  // run on load
+  document.addEventListener('DOMContentLoaded', applyTruncation);
+
+  // run on resize (debounced)
+  window.addEventListener('resize', debounce(applyTruncation, 120));
+
+  // also listen to media query changes (faster than resize sometimes)
+  try {
+    mq.addEventListener('change', applyTruncation);
+  } catch(e) {
+    // older browsers fallback
+    mq.addListener(applyTruncation);
+  }
+})();
 
  document.addEventListener("DOMContentLoaded", function () {
     const productCards = document.querySelectorAll(".star-wrapper");

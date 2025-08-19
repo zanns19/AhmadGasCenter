@@ -106,6 +106,11 @@ class Contact(models.Model):
     message=models.CharField(max_length=620,default="")
     def __str__(self):
         return self.name
+    
+class Offermsg(models.Model):
+    name=models.CharField(max_length=120,default="")
+    def __str__(self):
+        return self.name
 
 
     
